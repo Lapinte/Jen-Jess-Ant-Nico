@@ -24,6 +24,7 @@ namespace BoVoyageJJAN.Models
         public DateTime ReturnDate { get; set; }
 
         [Required(ErrorMessage = "Le nombre de places est requis")]
+        [Display(Name ="Nombre de places")]
         public int PlaceNumber { get; set; }
 
         [Required(ErrorMessage = "Le tarif est requis")]

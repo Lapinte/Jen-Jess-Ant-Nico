@@ -10,7 +10,7 @@ namespace BoVoyageJJAN.Filter
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (filterContext.HttpContext.Session["USER_BO"] == null)
+            if (filterContext.HttpContext.Session["COMMERCIAL_BO"] == null)
             {
                 filterContext.Result = new RedirectResult("\\BackOffice\\Authentication\\Login");
                 //filterContext.Result = new RedirectToRouteResult( new { controller = "Authentication", action = "Login", area = "BackOffice" });
