@@ -95,13 +95,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Areas\BackOffice\Views\DashBoard\Index.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\AuthenticationCommercialController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\DashBoardController.cs" />
+    <Compile Include="Areas\BackOffice\Models\AuthenticationViewModels.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Data\JjanDbContext.cs" />
+    <Compile Include="Filter\AuthenticationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -121,6 +128,7 @@
     <Compile Include="Models\Participant.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\Validator\DateGreaterThanAttribute.cs" />
     <Compile Include="Utils\Validator\ExistingMailCommercial.cs" />
     <Compile Include="Utils\Validator\ExistingMailCustomer.cs" />
@@ -128,6 +136,12 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="Areas\BackOffice\Views\web.config" />
+    <Content Include="Areas\BackOffice\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_LayoutBO.cshtml" />
+    <Content Include="Areas\BackOffice\Views\AuthenticationCommercial\Login.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -138,10 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\BackOffice\Controllers\" />
-    <Folder Include="Areas\BackOffice\Models\" />
-    <Folder Include="Areas\BackOffice\Views\Shared\" />
-    <Folder Include="Controllers\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807251256353_Init.resx">
