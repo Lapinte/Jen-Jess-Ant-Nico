@@ -17,8 +17,7 @@ namespace BoVoyageJJAN.Models
 
         [Required(ErrorMessage = "le champ {0} est requis")]
         [Display(Name = "Prix Total")]
-        [DataType(DataType.Currency)]
-        public float TotalPrice { get; set; }
+        public decimal TotalPrice { get; set; }
 
         [Required(ErrorMessage = "le champ {0} est requis")]
         [Display(Name = "Assurance")]
