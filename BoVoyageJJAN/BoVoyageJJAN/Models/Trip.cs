@@ -34,12 +34,12 @@ namespace BoVoyageJJAN.Models
         public int DestinationID { get; set; }
 
         [ForeignKey("DestinationID")]
-        public string Destination { get; set; }
+        public Destination Destination { get; set; }
 
         [Display(Name = "Agence")]
         public int AgencyID { get; set; }
 
         [ForeignKey("AgencyID")]
-        public string Agency { get; set; }
+        public Agency Agency { get; set; }
     }
 }
