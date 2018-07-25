@@ -103,6 +103,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -151,6 +152,7 @@
     <Content Include="Areas\BackOffice\Views\Destinations\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\Destinations\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Destinations\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\DashBoard\Index.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -164,7 +166,12 @@
     <Compile Include="Controllers\ReservationsController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\TripsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\AuthenticationCommercialController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\DashBoardController.cs" />
+    <Compile Include="Areas\BackOffice\Models\AuthenticationViewModels.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Data\JjanDbContext.cs" />
+    <Compile Include="Filter\AuthenticationFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,6 +191,7 @@
     <Compile Include="Models\Participant.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\Validator\DateGreaterThanAttribute.cs" />
     <Compile Include="Utils\Validator\ExistingMailCommercial.cs" />
     <Compile Include="Utils\Validator\ExistingMailCustomer.cs" />
@@ -201,6 +209,12 @@
     <Content Include="Areas\BackOffice\Views\Commercials\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\Commercials\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Commercials\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_LayoutBO.cshtml" />
+    <Content Include="Areas\BackOffice\Views\AuthenticationCommercial\Login.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
