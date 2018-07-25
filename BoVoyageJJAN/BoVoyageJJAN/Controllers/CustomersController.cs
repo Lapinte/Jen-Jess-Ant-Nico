@@ -11,10 +11,8 @@ using BoVoyageJJAN.Models;
 
 namespace BoVoyageJJAN.Controllers
 {
-    public class CustomersController : Controller
+    public class CustomersController : BaseController
     {
-        private JjanDbContext db = new JjanDbContext();
-
         // GET: Customers
         public ActionResult Index()
         {
@@ -119,15 +117,6 @@ namespace BoVoyageJJAN.Controllers
             db.Customers.Remove(customer);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

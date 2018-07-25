@@ -6,15 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BoVoyageJJAN.Controllers;
 using BoVoyageJJAN.Data;
 using BoVoyageJJAN.Models;
 
 namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
-    public class CommercialsController : Controller
+    public class CommercialsController : BaseController
     {
-        private JjanDbContext db = new JjanDbContext();
-
         // GET: BackOffice/Commercials
         public ActionResult Index()
         {
@@ -116,13 +115,5 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

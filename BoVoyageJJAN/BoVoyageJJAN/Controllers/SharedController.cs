@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace BoVoyageJJAN.Controllers
 {
-    public class SharedController : Controller
+    public class SharedController : BaseController
     {
         // GET: Shared
         public ActionResult TopFiveCheap()

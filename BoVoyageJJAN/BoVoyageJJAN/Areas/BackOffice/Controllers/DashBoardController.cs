@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BoVoyageJJAN.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,7 +7,7 @@ using System.Web.Mvc;
 
 namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
-    public class DashBoardController : Controller
+    public class DashBoardController : BaseController
     {
         // GET: BackOffice/DashBoard
         public ActionResult Index()
