@@ -96,11 +96,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Areas\BackOffice\Views\Destinations\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Destinations\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Destinations\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Destinations\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Destinations\Index.cshtml" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\CommercialsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\DestinationsController.cs" />
+    <Compile Include="Controllers\ReservationsController.cs" />
+    <Compile Include="Controllers\SharedController.cs" />
+    <Compile Include="Controllers\TripsController.cs" />
     <Compile Include="Data\JjanDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -128,7 +138,25 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="Areas\BackOffice\Views\web.config" />
+    <Content Include="Areas\BackOffice\Views\Commercials\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Commercials\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Commercials\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Commercials\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Commercials\Index.cshtml" />
     <None Include="packages.config" />
+    <Content Include="Views\Trips\Create.cshtml" />
+    <Content Include="Views\Trips\Delete.cshtml" />
+    <Content Include="Views\Trips\Details.cshtml" />
+    <Content Include="Views\Trips\Edit.cshtml" />
+    <Content Include="Views\Trips\Index.cshtml" />
+    <Content Include="Views\Reservations\Create.cshtml" />
+    <Content Include="Views\Reservations\Delete.cshtml" />
+    <Content Include="Views\Reservations\Details.cshtml" />
+    <Content Include="Views\Reservations\Edit.cshtml" />
+    <Content Include="Views\Reservations\Index.cshtml" />
+    <Content Include="Views\Shared\_TopFiveCheap.cshtml" />
+    <Content Include="Views\Shared\_TopFiveRush.cshtml" />
+    <Content Include="Views\Shared\_TopFiveCountry.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -138,10 +166,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\BackOffice\Controllers\" />
     <Folder Include="Areas\BackOffice\Models\" />
     <Folder Include="Areas\BackOffice\Views\Shared\" />
-    <Folder Include="Controllers\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807251256353_Init.resx">
