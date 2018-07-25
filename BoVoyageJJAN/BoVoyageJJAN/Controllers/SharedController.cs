@@ -11,18 +11,21 @@ namespace BoVoyageJJAN.Controllers
         // GET: Shared
         public ActionResult TopFiveCheap()
         {
-            return View();
+            var cheap = db.Trips.OrderBy(x => x.Price).Take(5);
+            return View("_TopFiveCheap", cheap);
         }
 
         // GET: Shared
         public ActionResult TopFiveRush()
         {
-            return View();
+            var rush = db.Trips.OrderByDescending(x => x.DepartureDate).Take(5);
+            return View("_TopFiveRush", rush);
         }
 
         // GET: Shared
         public ActionResult TopFiveCountry()
         {
+            
             return View();
         }
     }
