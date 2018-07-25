@@ -10,6 +10,7 @@ namespace BoVoyageJJAN.Models
     {
         [Required(ErrorMessage = "Le nom est requis")]
         [StringLength(15, ErrorMessage = "Trop long")]
+        [Display(Name = "Civilité")]
         public string Label { get; set; }
     }
 }

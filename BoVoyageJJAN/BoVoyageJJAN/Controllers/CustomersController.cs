@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using BoVoyageJJAN.Data;
 using BoVoyageJJAN.Models;
+using BoVoyageJJAN.Utils;
 
 namespace BoVoyageJJAN.Controllers
 {
@@ -47,10 +48,13 @@ namespace BoVoyageJJAN.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Mail,Password,Lastname,Firstname,Address,Phone,BirthDate,CivilityID")] Customer customer)
+        public ActionResult Create([Bind(Include = "ID,Mail,Password,ConfirmedPassword,Lastname,Firstname,Address,Phone,BirthDate,CivilityID")] Customer customer)
         {
             if (ModelState.IsValid)
             {
+                db.Configuration.ValidateOnSaveEnabled = false;
+                customer.Password = customer.Password.HashMD5();
+
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
