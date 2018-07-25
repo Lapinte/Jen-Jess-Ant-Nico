@@ -98,6 +98,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\Agency.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\Commercial.cs" />
+    <Compile Include="Models\Destination.cs" />
     <Compile Include="Models\Civility.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Participant.cs" />
