@@ -11,15 +11,15 @@ using BoVoyageJJAN.Controllers;
 
 namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
-    public class AuthenticationCommercialController : BaseController
+    public class AuthenticationCustomerController : BaseController
     {
-        // GET: BackOffice/AuthenticationCommercial/Login
+        // GET: AuthenticationCustomer/Login
         public ActionResult Login()
         {
             return View();
         }
 
-        // POST: BackOffice/AuthenticationCommercial/Login
+        // POST: AuthenticationCustomer/Login
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Login(AuthenticationLoginViewModel model)
@@ -27,8 +27,8 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             if (ModelState.IsValid)
             {
                 var passwordHash = model.Password.HashMD5();
-                var commercial = db.Commercials.SingleOrDefault(x => x.Mail == model.Login && x.Password == passwordHash);
-                if (commercial == null)
+                var customer = db.Customers.SingleOrDefault(x => x.Mail == model.Login && x.Password == passwordHash);
+                if (customer == null)
                 {
                     ViewBag.ErrorMessage = "Utilisateur ou mot de passe incorrect.";
 
@@ -36,14 +36,14 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
                 }
                 else
                 {
-                    Session.Add("COMMERCIAL_BO", commercial);
-                    return RedirectToAction("Index", "Dashboard", new { area = "BackOffice" });
+                    Session.Add("CUSTOMER_BO", customer);
+                    return RedirectToAction("Index", "Home", new { area = "" });
                 }
             }
             return View(model);
         }
 
-        // GET: BackOffice/Authentication/Logout
+        // GET: AuthenticationCustomer/Logout
         [AuthenticationCommercialFilter]
         public ActionResult Logout()
         {
