@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BoVoyageJJAN.Utils.Validator;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,9 +20,10 @@ namespace BoVoyageJJAN.Models
         [Display(Name = "Date de retour")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dddd dd MMMM yyyy}")]
+        [DateGreaterThan("DepartureDate")]
         public DateTime ReturnDate { get; set; }
 
-        [Required(ErrorMessage = "Le nombre de place est requis")]
+        [Required(ErrorMessage = "Le nombre de places est requis")]
         public int PlaceNumber { get; set; }
 
         [Required(ErrorMessage = "Le tarif est requis")]

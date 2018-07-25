@@ -9,17 +9,17 @@ namespace BoVoyageJJAN.Models
 {
     public class Destination : BaseModel
     {
-        [Required(ErrorMessage = "Le Continent est requis")]
+        [Required(ErrorMessage = "Le continent est requis")]
         [Display(Name = "Continent")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Le champ {0} doit contenir entre {2} et {1} caractères")]
         public string Continent { get; set; }
 
-        [Required(ErrorMessage = "Le Pays est requis")]
+        [Required(ErrorMessage = "Le pays est requis")]
         [Display(Name = "Pays")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Le champ {0} doit contenir entre {2} et {1} caractères")]
         public string Country { get; set; }
 
-        [Required(ErrorMessage = "Le Region est requis")]
+        [Required(ErrorMessage = "La région est requise")]
         [Display(Name = "Région")]
         [StringLength(50, MinimumLength = 2, ErrorMessage = "Le champ {0} doit contenir entre {2} et {1} caractères")]
         public string Region { get; set; }
