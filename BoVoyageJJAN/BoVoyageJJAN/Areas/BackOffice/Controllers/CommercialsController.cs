@@ -8,10 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using BoVoyageJJAN.Controllers;
 using BoVoyageJJAN.Data;
+using BoVoyageJJAN.Filter;
 using BoVoyageJJAN.Models;
+using BoVoyageJJAN.Utils;
 
 namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
+    [AuthenticationCommercialFilter]
     public class CommercialsController : BaseController
     {
         // GET: BackOffice/Commercials
@@ -46,10 +49,13 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Lastname,Firstname,Mail,Password")] Commercial commercial)
+        public ActionResult Create([Bind(Include = "ID,Lastname,Firstname,Mail,Password,ConfirmedPassword")] Commercial commercial)
         {
             if (ModelState.IsValid)
             {
+                db.Configuration.ValidateOnSaveEnabled = false;
+                commercial.Password = commercial.Password.HashMD5();
+
                 db.Commercials.Add(commercial);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -8,10 +8,12 @@ using System.Web;
 using System.Web.Mvc;
 using BoVoyageJJAN.Controllers;
 using BoVoyageJJAN.Data;
+using BoVoyageJJAN.Filter;
 using BoVoyageJJAN.Models;
 
 namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
+    [AuthenticationCommercialFilter]
     public class DestinationsController : BaseController
     {
         // GET: BackOffice/Destinations
