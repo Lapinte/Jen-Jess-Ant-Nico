@@ -171,9 +171,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CommercialsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DestinationsController.cs" />
-    <Compile Include="Controllers\ReservationsController.cs" />
+    <Compile Include="Controllers\BookingsController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
-    <Compile Include="Controllers\TripsController.cs" />
+    <Compile Include="Controllers\TravelsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AuthenticationCommercialController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\BackOffice\Models\AuthenticationViewModels.cs" />
@@ -199,6 +199,10 @@
     <Compile Include="Migrations\201807260919316_ModificationTableauDeBytes.cs" />
     <Compile Include="Migrations\201807260919316_ModificationTableauDeBytes.Designer.cs">
       <DependentUpon>201807260919316_ModificationTableauDeBytes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807261024403_AddStatut.cs" />
+    <Compile Include="Migrations\201807261024403_AddStatut.Designer.cs">
+      <DependentUpon>201807261024403_AddStatut.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Trip.cs" />
@@ -293,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807260919316_ModificationTableauDeBytes.resx">
       <DependentUpon>201807260919316_ModificationTableauDeBytes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807261024403_AddStatut.resx">
+      <DependentUpon>201807261024403_AddStatut.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

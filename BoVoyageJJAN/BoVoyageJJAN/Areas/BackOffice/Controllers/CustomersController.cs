@@ -11,7 +11,7 @@ using BoVoyageJJAN.Models;
 
 namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
-    public class CustomersBOController : Controller
+    public class CustomersController : Controller
     {
         private JjanDbContext db = new JjanDbContext();
 
@@ -93,6 +93,26 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             }
             ViewBag.CivilityID = new SelectList(db.Civilities, "ID", "Label", customer.CivilityID);
             return View(customer);
+        }
+
+        //GET: Customers/Search
+        public IQueryable<Customer> GetSearch(string? Lastname, string? Firstname = null, string? Address, string? Phone, DateTime? BirthDate, string? Mail)
+        {
+            IQueryable<Customer> liste = db.Customers;
+            if (Lastname != null)
+                liste = liste.Where(x => x.DepartureDate == returnDate);
+            if (returnDate != null)
+                liste = liste.Where(x => x.ReturnDate == returnDate);
+            if (placeNumber != null)
+                liste = liste.Where(x => x.PlaceNumber == placeNumber);
+            if (price != null)
+                liste = liste.Where(x => x.Price == price);
+            if (destinationId != null)
+                liste = liste.Where(x => x.DestinationID == destinationId);
+            if (agencyId != null)
+                liste = liste.Where(x => x.AgencyID == agencyId);
+
+            return liste;
         }
 
         // GET: BackOffice/CustomersBO/Delete/5

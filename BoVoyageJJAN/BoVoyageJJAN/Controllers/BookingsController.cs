@@ -12,9 +12,9 @@ using BoVoyageJJAN.Models;
 
 namespace BoVoyageJJAN.Controllers
 {
-    public class ReservationsController : BaseController
+    public class BookingsController : BaseController
     {
-        // GET: Reservations
+        // GET:Bookings
         
         public ActionResult Index()
         {
@@ -22,7 +22,7 @@ namespace BoVoyageJJAN.Controllers
             return View(reservations.ToList());
         }
 
-        // GET: Reservations/Details/5
+        // GET: Bookings/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,7 +38,7 @@ namespace BoVoyageJJAN.Controllers
         }
 
         
-        // GET: Reservations/Create
+        // GET: Bookings/Create
         public ActionResult Create()
         {
             ViewBag.CustomerID = new SelectList(db.Customers, "ID", "Mail");
@@ -46,7 +46,7 @@ namespace BoVoyageJJAN.Controllers
             return View();
         }
 
-        // POST: Reservations/Create
+        // POST: Bookings/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -58,77 +58,44 @@ namespace BoVoyageJJAN.Controllers
             {
                 db.Reservations.Add(reservation);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return View();
             }
 
             ViewBag.CustomerID = new SelectList(db.Customers, "ID", "Mail", reservation.CustomerID);
             ViewBag.TripID = new SelectList(db.Trips, "ID", "ID", reservation.TripID);
             return View(reservation);
         }
-
-        // GET: Reservations/Edit/5
-        
-        public ActionResult Edit(int? id)
+         public ActionResult AddParticipant (int participantNumber, Participant participant)
         {
-            if (id == null)
+            if (participantNumber == 0 )
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservations.Find(id);
-            if (reservation == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "Mail", reservation.CustomerID);
-            ViewBag.TripID = new SelectList(db.Trips, "ID", "ID", reservation.TripID);
-            return View(reservation);
-        }
 
-        // POST: Reservations/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        
-        public ActionResult Edit([Bind(Include = "ID,CreditCardNumber,TotalPrice,Insurance,ParticipantNumber,ParticipantUnderTwelveNumber,CreatedAt,CustomerID,TripID")] Reservation reservation)
-        {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
-                db.Entry(reservation).State = EntityState.Modified;
+                db.Participants.Add(participant);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return View();
             }
-            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "Mail", reservation.CustomerID);
-            ViewBag.TripID = new SelectList(db.Trips, "ID", "ID", reservation.TripID);
-            return View(reservation);
-        }
+           
+            return View();
 
-        // GET: Reservations/Delete/5
-       
-        public ActionResult Delete(int? id)
+        }
+       public ActionResult Cancel(int? id)
         {
-            if (id == null)
+            if (id ==null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservations.Find(id);
-            if (reservation == null)
-            {
-                return HttpNotFound();
-            }
-            return View(reservation);
-        }
 
-        // POST: Reservations/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        
-        public ActionResult DeleteConfirmed(int id)
-        {
             Reservation reservation = db.Reservations.Find(id);
-            db.Reservations.Remove(reservation);
-            db.SaveChanges();
+           
             return RedirectToAction("Index");
-        }
+
+
+           
+        }       
+       
     }
 }

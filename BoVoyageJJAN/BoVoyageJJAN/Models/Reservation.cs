@@ -40,6 +40,11 @@ namespace BoVoyageJJAN.Models
         [DisplayFormat(DataFormatString = "{0:dddd dd MMMM yyyy}")]
         public DateTime CreatedAt { get; set; }
 
+        [Required(ErrorMessage = "Le champ {0} est requis")]
+        [Range(0,3)]
+        [Display(Name ="Statut de la réservation")]
+        public int Statut { get; set; }
+
         [Display(Name = "Client")]
         public int CustomerID { get; set; }
 
