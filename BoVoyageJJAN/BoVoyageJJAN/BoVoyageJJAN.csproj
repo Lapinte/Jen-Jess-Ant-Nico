@@ -128,7 +128,6 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Areas\BackOffice\Views\web.config" />
-
     <Content Include="Areas\BackOffice\Views\Trips\Create.cshtml" />
     <Content Include="Areas\BackOffice\Views\Trips\Delete.cshtml" />
     <Content Include="Areas\BackOffice\Views\Trips\Details.cshtml" />
@@ -176,13 +175,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AgenciesController.cs" />
-    
+    <Compile Include="Areas\BackOffice\Controllers\CustomersController.cs" />
     <Compile Include="Controllers\AuthenticationUserController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ReservationsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\TripsController.cs" />
-    <Compile Include="Controllers\AuthenticationCustomerController.cs" />
-    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CommercialsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DestinationsController.cs" />
