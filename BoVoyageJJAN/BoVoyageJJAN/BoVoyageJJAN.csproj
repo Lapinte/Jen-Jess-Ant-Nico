@@ -133,6 +133,16 @@
     <Content Include="Areas\BackOffice\Views\CustomersBO\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\CustomersBO\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\CustomersBO\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Trips\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Trips\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Trips\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Trips\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Trips\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Reservations\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Reservations\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Reservations\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Reservations\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Reservations\Index.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -166,6 +176,8 @@
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AgenciesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CustomersBOController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\ReservationsController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\TripsController.cs" />
     <Compile Include="Controllers\AuthenticationCustomerController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
