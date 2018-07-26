@@ -13,7 +13,7 @@ using BoVoyageJJAN.Models;
 
 namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
-    [AuthenticationCommercialFilter]
+    
     public class AgenciesController : BaseController
     {
         // GET: BackOffice/Agencies

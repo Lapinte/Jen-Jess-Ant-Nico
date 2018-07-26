@@ -44,7 +44,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         }
 
         // GET: AuthenticationCustomer/Logout
-        [AuthenticationCommercialFilter]
+        [AuthenticationCustomerFilter]
         public ActionResult Logout()
         {
             Session.Clear();

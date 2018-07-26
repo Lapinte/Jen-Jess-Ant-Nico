@@ -15,7 +15,7 @@ namespace BoVoyageJJAN.Controllers
     public class ReservationsController : BaseController
     {
         // GET: Reservations
-        [AuthenticationCommercialFilter]
+        
         public ActionResult Index()
         {
             var reservations = db.Reservations.Include(r => r.Customer).Include(r => r.Trip);
@@ -37,7 +37,7 @@ namespace BoVoyageJJAN.Controllers
             return View(reservation);
         }
 
-        [AuthenticationCustomerFilter]
+        
         // GET: Reservations/Create
         public ActionResult Create()
         {
@@ -67,7 +67,7 @@ namespace BoVoyageJJAN.Controllers
         }
 
         // GET: Reservations/Edit/5
-        [AuthenticationCommercialFilter]
+        
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -89,7 +89,7 @@ namespace BoVoyageJJAN.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AuthenticationCommercialFilter]
+        
         public ActionResult Edit([Bind(Include = "ID,CreditCardNumber,TotalPrice,Insurance,ParticipantNumber,ParticipantUnderTwelveNumber,CreatedAt,CustomerID,TripID")] Reservation reservation)
         {
             if (ModelState.IsValid)
@@ -104,7 +104,7 @@ namespace BoVoyageJJAN.Controllers
         }
 
         // GET: Reservations/Delete/5
-        [AuthenticationCommercialFilter]
+       
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -122,7 +122,7 @@ namespace BoVoyageJJAN.Controllers
         // POST: Reservations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [AuthenticationCommercialFilter]
+        
         public ActionResult DeleteConfirmed(int id)
         {
             Reservation reservation = db.Reservations.Find(id);

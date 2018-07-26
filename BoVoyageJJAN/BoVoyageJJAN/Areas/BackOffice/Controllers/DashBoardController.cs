@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
-    [AuthenticationCommercialFilter]
+    
     public class DashBoardController : BaseController
     {
         // GET: BackOffice/DashBoard

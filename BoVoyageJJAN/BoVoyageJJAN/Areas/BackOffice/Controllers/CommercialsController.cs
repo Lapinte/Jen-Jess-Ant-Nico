@@ -14,7 +14,7 @@ using BoVoyageJJAN.Utils;
 
 namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
-    [AuthenticationCommercialFilter]
+    
     public class CommercialsController : BaseController
     {
         // GET: BackOffice/Commercials
