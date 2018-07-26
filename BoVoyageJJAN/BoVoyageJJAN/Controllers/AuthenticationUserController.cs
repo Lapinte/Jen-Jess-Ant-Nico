@@ -39,6 +39,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
                 else
                 {
                     Session.Add("USER_BO", customer);
+                    DisplayMessage("Bienvenue " + @customer.Firstname +" !", MessageType.SUCCESS);
                     return RedirectToAction("Index", "Home", new { area = "" });
                 }
             }
@@ -46,10 +47,11 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         }
 
         // GET: AuthenticationUser/Logout
-        [AuthenticationCustomerFilter]
+        [AuthenticationUserFilter]
         public ActionResult Logout()
         {
             Session.Clear();
+            DisplayMessage("A bientôt !", MessageType.SUCCESS);
             return RedirectToAction("Index", "Home", new { area = "" });
         }
     }

@@ -12,6 +12,14 @@
     <title>Index</title>
 </head>
 <body>
+
+    @if (TempData["Message"] != null)
+    {
+    <div class="alert alert-@TempData["MessageType"].ToString()">
+        @TempData["Message"].ToString()
+    </div>
+    }
+
     <h4>Liste des clients</h4>
     <table class="table">
         <tr>
@@ -67,6 +75,7 @@
                     @Html.ActionLink("Détails", "Details", new { id = item.ID })
                 </td>
             </tr>
+
         }
 
     </table>
