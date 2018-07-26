@@ -7,24 +7,22 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BoVoyageJJAN.Data;
-using BoVoyageJJAN.Filter;
 using BoVoyageJJAN.Models;
-using BoVoyageJJAN.Utils;
 
-namespace BoVoyageJJAN.Controllers
+namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
-    public class CustomersController : BaseController
+    public class CustomersBOController : Controller
     {
-        // GET: Customers
-        //[AuthenticationCommercialFilter]
+        private JjanDbContext db = new JjanDbContext();
+
+        // GET: BackOffice/CustomersBO
         public ActionResult Index()
         {
             var customers = db.Customers.Include(c => c.Civility);
             return View(customers.ToList());
         }
 
-        // GET: Customers/Details/5
-        //[AuthenticationCommercialFilter]
+        // GET: BackOffice/CustomersBO/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,47 +36,23 @@ namespace BoVoyageJJAN.Controllers
             }
             return View(customer);
         }
-        // GET: Customers/Search
-        //[AuthenticationCommercialFilter]
-        public IQueryable<Customer> GetSearch(string mail = "", string lastname = "", string firstname = "", string phone = "", string address = "", int? customerID = null)
-        {
-            var query = db.Customers.Where(x => x.ID > 0);
 
-            if (customerID != null)
-                query = query.Where(x => x.ID == customerID);
-            if (!string.IsNullOrWhiteSpace(mail))
-                query = query.Where(x => x.Mail.Contains(mail));
-            if (!string.IsNullOrWhiteSpace(lastname))
-                query = query.Where(x => x.Lastname.Contains(lastname));
-            if (!string.IsNullOrWhiteSpace(firstname))
-                query = query.Where(x => x.Firstname.Contains(firstname));
-            if (!string.IsNullOrWhiteSpace(phone))
-                query = query.Where(x => x.Phone.Contains(phone));
-            if (!string.IsNullOrWhiteSpace(address))
-                query = query.Where(x => x.Address.Contains(address));
-
-            return query;
-        }
-
-        // GET: Customers/Create
+        // GET: BackOffice/CustomersBO/Create
         public ActionResult Create()
         {
             ViewBag.CivilityID = new SelectList(db.Civilities, "ID", "Label");
             return View();
         }
 
-        // POST: Customers/Create
+        // POST: BackOffice/CustomersBO/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Mail,Password,ConfirmedPassword,Lastname,Firstname,Address,Phone,BirthDate,CivilityID")] Customer customer)
+        public ActionResult Create([Bind(Include = "ID,Mail,Password,Lastname,Firstname,Address,Phone,BirthDate,CivilityID")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                db.Configuration.ValidateOnSaveEnabled = false;
-                customer.Password = customer.Password.HashMD5();
-
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -88,7 +62,7 @@ namespace BoVoyageJJAN.Controllers
             return View(customer);
         }
 
-        // GET: Customers/Edit/5
+        // GET: BackOffice/CustomersBO/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -104,7 +78,7 @@ namespace BoVoyageJJAN.Controllers
             return View(customer);
         }
 
-        // POST: Customers/Edit/5
+        // POST: BackOffice/CustomersBO/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -121,7 +95,7 @@ namespace BoVoyageJJAN.Controllers
             return View(customer);
         }
 
-        // GET: Customers/Delete/5
+        // GET: BackOffice/CustomersBO/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -136,7 +110,7 @@ namespace BoVoyageJJAN.Controllers
             return View(customer);
         }
 
-        // POST: Customers/Delete/5
+        // POST: BackOffice/CustomersBO/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -145,6 +119,15 @@ namespace BoVoyageJJAN.Controllers
             db.Customers.Remove(customer);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
