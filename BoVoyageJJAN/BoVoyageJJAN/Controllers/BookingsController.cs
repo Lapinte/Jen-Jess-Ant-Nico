@@ -59,7 +59,7 @@ namespace BoVoyageJJAN.Controllers
                 db.SaveChanges();
                 return View();
             }
-            ViewBag.ReservationID = new SelectList(db.Reservations, "TotalPrice", "ParticipantNumber", "ParticipantUnderTwelveNumber", "TripID", "ID");
+            ViewBag.Reservation = new SelectList(db.Reservations, "TotalPrice", "ParticipantNumber", "ParticipantUnderTwelveNumber", "TripID", "ID");
             return View();
 
 

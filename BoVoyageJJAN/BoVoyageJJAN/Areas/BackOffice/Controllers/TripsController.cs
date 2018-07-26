@@ -17,15 +17,22 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         private JjanDbContext db = new JjanDbContext();
 
         // GET: BackOffice/Trips
-        public ActionResult Index(TripSearchViewModel model)
+       /* public ActionResult Index(TripSearchViewModel model)
         {
-            if (model == null)
-            {
-                var trips = db.Trips.Include(t => t.Agency).Include(t => t.Destination);
-                return View(trips.ToList());
-            }
             IEnumerable<Trip> liste = db.Trips.Include(t => t.Agency).Include(t => t.Destination);
-            if ()
+            if (model.Destination!=null)
+                liste = db.Trips.Where( x => x.Destination.Country.Contains(model.Destination.Country));
+            if (model.MaxPrice != null)
+                liste = db.Trips.Where(x => x.Price <= model.MaxPrice);
+            if (model.MinPrice != null)
+                liste = db.Trips.Where(x => x.Price >= model.MinPrice);
+            if (model.MaxDate != null)
+                liste = db.Trips.Where(x => x.ReturnDate <= model.MaxDate);
+            if (model.MinDate != null)
+                liste = db.Trips.Where(x => x.DepartureDate >= model.MinDate);
+
+            model.Trips = liste.ToList();
+            return View(model);
         }
         
 
@@ -105,26 +112,6 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             ViewBag.AgencyID = new SelectList(db.Agencies, "ID", "Name", trip.AgencyID);
             ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent", trip.DestinationID);
             return View(trip);
-        }
-
-        //GET: Trips/Search
-        public ActionResult Search(DateTime? departureDate = null, DateTime? returnDate = null, int? placeNumber = null, decimal? price = null, int? destinationId = null, int? agencyId = null)
-        {
-            IQueryable<Trip> liste = db.Trips;
-            if (departureDate != null)
-                liste = liste.Where(x => x.DepartureDate == returnDate);
-            if (returnDate != null)
-                liste = liste.Where(x => x.ReturnDate == returnDate);
-            if (placeNumber != null)
-                liste = liste.Where(x => x.PlaceNumber == placeNumber);
-            if (price != null)
-                liste = liste.Where(x => x.Price == price);
-            if (destinationId != null)
-                liste = liste.Where(x => x.DestinationID == destinationId);
-            if (agencyId != null)
-                liste = liste.Where(x => x.AgencyID == agencyId);
-
-            return View("Index", liste);
         }
 
         // GET: BackOffice/Trips/Delete/5

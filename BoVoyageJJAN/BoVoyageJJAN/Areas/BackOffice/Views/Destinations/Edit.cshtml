@@ -65,30 +65,33 @@
                 </div>
             </div>
         </div>
-        <form action="@Url.Action("AddFile","Destination")" method="post" enctype="multipart/form-data">
+        <form action="@Url.Action("AddFile","Destinations")" method="post" enctype="multipart/form-data">
             @Html.HiddenFor(x => x.ID)
             <div class="form-group">
                 <label> Fichier</label>
-                <input type="File" name="upload" class="form-control" />
+                <input id="file" type="File" name="upload" class="form-control" />
 
             </div>
             <button type="submit" class="btn btn-warning">Ajouter</button>
 
 
         </form>
-       
-        @foreach (var file in Model.Files)
-        {
-           
-                <img class="img-thumbnail" title="@file.Name" src="data:@file.ContentType;base64, @System.Convert.ToBase64String(file.Content)" />
-                <a href="@Url.Action("DeletedFile","Destination",new {id=file.ID })" class="btn btn-outline-info"></a>
 
-
-            }
 
 
     }
-    }
+    @*
+        <div class="row">
+             @foreach (var file in Model.Files)
+         {
+             <img class="img-thumbnail" title="@file.Name" src="data:@file.ContentType;base64, @System.Convert.ToBase64String(file.Content)" />
+             <a href="@Url.Action("DeletedFile","Destinations",new {id=file.ID })" class="btn btn-outline-info"></a>
+         }
+
+         </div>
+    *@
+
+
 
     <div>
         @Html.ActionLink("Back to List", "Index")
