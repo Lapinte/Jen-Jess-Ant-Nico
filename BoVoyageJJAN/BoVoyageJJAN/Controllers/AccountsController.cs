@@ -13,7 +13,7 @@ using BoVoyageJJAN.Utils;
 
 namespace BoVoyageJJAN.Controllers
 {
-    public class AccountController : BaseController
+    public class AccountsController : BaseController
     {
         // GET: Accounts
         public ActionResult Index()
@@ -36,7 +36,7 @@ namespace BoVoyageJJAN.Controllers
             }
             return View(customer);
         }
-        
+
         // GET: Accounts/Create
         public ActionResult Create()
         {
@@ -44,7 +44,7 @@ namespace BoVoyageJJAN.Controllers
             return View();
         }
 
-        // POST: Customers/Create
+        // POST: Accounts/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -58,6 +58,7 @@ namespace BoVoyageJJAN.Controllers
 
                 db.Customers.Add(customer);
                 db.SaveChanges();
+                DisplayMessage("Votre compte est bien créé !", MessageType.SUCCESS);
                 return RedirectToAction("Index");
             }
 
@@ -92,6 +93,7 @@ namespace BoVoyageJJAN.Controllers
             {
                 db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
+                DisplayMessage("Modifications enregistrées", MessageType.SUCCESS);
                 return RedirectToAction("Index");
             }
             ViewBag.CivilityID = new SelectList(db.Civilities, "ID", "Label", customer.CivilityID);
@@ -121,6 +123,7 @@ namespace BoVoyageJJAN.Controllers
             Customer customer = db.Customers.Find(id);
             db.Customers.Remove(customer);
             db.SaveChanges();
+            DisplayMessage("Votre compte a bien été supprimé", MessageType.SUCCESS);
             return RedirectToAction("Index");
         }
     }

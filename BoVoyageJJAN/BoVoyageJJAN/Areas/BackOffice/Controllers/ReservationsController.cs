@@ -7,22 +7,22 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BoVoyageJJAN.Data;
-using BoVoyageJJAN.Filter;
 using BoVoyageJJAN.Models;
 
-namespace BoVoyageJJAN.Controllers
+namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
-    public class ReservationsController : BaseController
+    public class ReservationsController : Controller
     {
-        // GET: Reservations
-        
+        private JjanDbContext db = new JjanDbContext();
+
+        // GET: BackOffice/Reservations
         public ActionResult Index()
         {
             var reservations = db.Reservations.Include(r => r.Customer).Include(r => r.Trip);
             return View(reservations.ToList());
         }
 
-        // GET: Reservations/Details/5
+        // GET: BackOffice/Reservations/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,8 +37,7 @@ namespace BoVoyageJJAN.Controllers
             return View(reservation);
         }
 
-        
-        // GET: Reservations/Create
+        // GET: BackOffice/Reservations/Create
         public ActionResult Create()
         {
             ViewBag.CustomerID = new SelectList(db.Customers, "ID", "Mail");
@@ -46,12 +45,11 @@ namespace BoVoyageJJAN.Controllers
             return View();
         }
 
-        // POST: Reservations/Create
+        // POST: BackOffice/Reservations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AuthenticationCustomerFilter]
         public ActionResult Create([Bind(Include = "ID,CreditCardNumber,TotalPrice,Insurance,ParticipantNumber,ParticipantUnderTwelveNumber,CreatedAt,CustomerID,TripID")] Reservation reservation)
         {
             if (ModelState.IsValid)
@@ -66,8 +64,7 @@ namespace BoVoyageJJAN.Controllers
             return View(reservation);
         }
 
-        // GET: Reservations/Edit/5
-        
+        // GET: BackOffice/Reservations/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -84,12 +81,11 @@ namespace BoVoyageJJAN.Controllers
             return View(reservation);
         }
 
-        // POST: Reservations/Edit/5
+        // POST: BackOffice/Reservations/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
         public ActionResult Edit([Bind(Include = "ID,CreditCardNumber,TotalPrice,Insurance,ParticipantNumber,ParticipantUnderTwelveNumber,CreatedAt,CustomerID,TripID")] Reservation reservation)
         {
             if (ModelState.IsValid)
@@ -103,8 +99,7 @@ namespace BoVoyageJJAN.Controllers
             return View(reservation);
         }
 
-        // GET: Reservations/Delete/5
-       
+        // GET: BackOffice/Reservations/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -119,16 +114,51 @@ namespace BoVoyageJJAN.Controllers
             return View(reservation);
         }
 
-        // POST: Reservations/Delete/5
+        // POST: BackOffice/Reservations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        
         public ActionResult DeleteConfirmed(int id)
         {
             Reservation reservation = db.Reservations.Find(id);
             db.Reservations.Remove(reservation);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult addParticipant(int id, Participant participant)
+        {
+            if (participant != null)
+            {
+                var person = new Participant();
+
+                db.Participants.Add(person);
+                db.SaveChanges();
+
+                return RedirectToAction("Edit", new { id = person.ReservationID });
+            }
+            else
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+        }
+
+        public ActionResult DeleteParticipant(int id)
+        {
+
+            Participant person = db.Participants.Find(id);
+            db.Participants.Remove(person);
+            db.SaveChanges();
+
+            return RedirectToAction("Edit", new { id = person.ReservationID });
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

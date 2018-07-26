@@ -9,18 +9,20 @@ using System.Web.Mvc;
 using BoVoyageJJAN.Data;
 using BoVoyageJJAN.Models;
 
-namespace BoVoyageJJAN.Controllers
+namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
-    public class TripsController : BaseController
+    public class TripsController : Controller
     {
-        // GET: Trips
+        private JjanDbContext db = new JjanDbContext();
+
+        // GET: BackOffice/Trips
         public ActionResult Index()
         {
             var trips = db.Trips.Include(t => t.Agency).Include(t => t.Destination);
             return View(trips.ToList());
         }
 
-        // GET: Trips/Details/5
+        // GET: BackOffice/Trips/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,7 +37,7 @@ namespace BoVoyageJJAN.Controllers
             return View(trip);
         }
 
-        // GET: Trips/Create
+        // GET: BackOffice/Trips/Create
         public ActionResult Create()
         {
             ViewBag.AgencyID = new SelectList(db.Agencies, "ID", "Name");
@@ -43,7 +45,7 @@ namespace BoVoyageJJAN.Controllers
             return View();
         }
 
-        // POST: Trips/Create
+        // POST: BackOffice/Trips/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -62,7 +64,7 @@ namespace BoVoyageJJAN.Controllers
             return View(trip);
         }
 
-        // GET: Trips/Edit/5
+        // GET: BackOffice/Trips/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,7 +81,7 @@ namespace BoVoyageJJAN.Controllers
             return View(trip);
         }
 
-        // POST: Trips/Edit/5
+        // POST: BackOffice/Trips/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -117,8 +119,7 @@ namespace BoVoyageJJAN.Controllers
             return liste;
         }
 
-
-        // GET: Trips/Delete/5
+        // GET: BackOffice/Trips/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -133,7 +134,7 @@ namespace BoVoyageJJAN.Controllers
             return View(trip);
         }
 
-        // POST: Trips/Delete/5
+        // POST: BackOffice/Trips/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -142,7 +143,15 @@ namespace BoVoyageJJAN.Controllers
             db.Trips.Remove(trip);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }   
-      
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }
