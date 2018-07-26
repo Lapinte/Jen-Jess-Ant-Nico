@@ -97,6 +97,27 @@ namespace BoVoyageJJAN.Controllers
             return View(trip);
         }
 
+        //GET: Trips/Search
+        public IQueryable<Trip> GetSearch(DateTime? departureDate = null, DateTime? returnDate = null, int? placeNumber = null, decimal? price = null, int? destinationId = null, int? agencyId = null)
+        {
+            IQueryable<Trip> liste = db.Trips;
+            if (departureDate != null)
+                liste = liste.Where(x => x.DepartureDate == returnDate);
+            if (returnDate != null)
+                liste = liste.Where(x => x.ReturnDate == returnDate);
+            if (placeNumber != null)
+                liste = liste.Where(x => x.PlaceNumber == placeNumber);
+            if (price != null)
+                liste = liste.Where(x => x.Price == price);
+            if (destinationId != null)
+                liste = liste.Where(x => x.DestinationID == destinationId);
+            if (agencyId != null)
+                liste = liste.Where(x => x.AgencyID == agencyId);
+
+            return liste;
+        }
+
+
         // GET: Trips/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -121,32 +142,7 @@ namespace BoVoyageJJAN.Controllers
             db.Trips.Remove(trip);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public ActionResult AddFile(int id, HttpPostedFileBase upload)
-        {
-            if (upload.ContentLength > 0)
-            {
-                var file = new TripFile();
-                file.TripID = id;
-                file.Name = upload.FileName;
-                file.ContentType = upload.ContentType;
-
-                return RedirectToAction("Edit", new { id = file.TripID });
-            }
-            else
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-        }
-        [HttpPost]
-        public ActionResult DeleteFile (int id)
-        {
-            TripFile tripFile = db.TripFiles.Find(id);
-            db.TripFiles.Remove(tripFile);
-            db.SaveChanges();
-            return View();
-        }
-
+        }   
+      
     }
 }

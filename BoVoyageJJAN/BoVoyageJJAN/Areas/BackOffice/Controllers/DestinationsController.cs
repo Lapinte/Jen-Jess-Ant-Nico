@@ -117,5 +117,30 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        public ActionResult AddFile(int id, HttpPostedFileBase upload)
+        {
+            if (upload.ContentLength > 0)
+            {
+                var file = new DestinationFile();
+                file.DestinationID = id;
+                file.Name = upload.FileName;
+                file.ContentType = upload.ContentType;
+
+                return RedirectToAction("Edit", new { id = file.DestinationID });
+            }
+            else
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+        }
+        [HttpPost]
+        public ActionResult DeleteFile(int id)
+        {
+            DestinationFile destinationFile = db.DestinationFiles.Find(id);
+            db.DestinationFiles.Remove(destinationFile);
+            db.SaveChanges();
+            return View();
+        }
+
     }
 }
