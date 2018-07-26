@@ -14,35 +14,14 @@ namespace BoVoyageJJAN.Controllers
 {
     public class BookingsController : BaseController
     {
-        // GET:Bookings
-        
-        public ActionResult Index()
-        {
-            var reservations = db.Reservations.Include(r => r.Customer).Include(r => r.Trip);
-            return View(reservations.ToList());
-        }
 
-        // GET: Bookings/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Reservation reservation = db.Reservations.Find(id);
-            if (reservation == null)
-            {
-                return HttpNotFound();
-            }
-            return View(reservation);
-        }
 
-        
         // GET: Bookings/Create
         public ActionResult Create()
         {
             ViewBag.CustomerID = new SelectList(db.Customers, "ID", "Mail");
             ViewBag.TripID = new SelectList(db.Trips, "ID", "ID");
+
             return View();
         }
 
@@ -54,6 +33,11 @@ namespace BoVoyageJJAN.Controllers
         [AuthenticationCustomerFilter]
         public ActionResult Create([Bind(Include = "ID,CreditCardNumber,TotalPrice,Insurance,ParticipantNumber,ParticipantUnderTwelveNumber,CreatedAt,CustomerID,TripID")] Reservation reservation)
         {
+            /* var old= db.Reservations.SingleOrDefault(x => x.ID == reservation.ID);
+             reservation.CreatedAt = old.CreatedAt;
+             db.Entry(old).State = EntityState.Detached;*/
+
+
             if (ModelState.IsValid)
             {
                 db.Reservations.Add(reservation);
@@ -63,39 +47,53 @@ namespace BoVoyageJJAN.Controllers
 
             ViewBag.CustomerID = new SelectList(db.Customers, "ID", "Mail", reservation.CustomerID);
             ViewBag.TripID = new SelectList(db.Trips, "ID", "ID", reservation.TripID);
-            return View(reservation);
+            
+            return View();
         }
-         public ActionResult AddParticipant (int participantNumber, Participant participant)
+        public ActionResult AddParticipant(int? id, Participant participant)
         {
-            if (participantNumber == 0 )
+            if (ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
 
-            if(ModelState.IsValid)
-            {
                 db.Participants.Add(participant);
                 db.SaveChanges();
                 return View();
             }
-           
+            ViewBag.ReservationID = new SelectList(db.Reservations, "TotalPrice", "ParticipantNumber", "ParticipantUnderTwelveNumber", "TripID", "ID");
             return View();
 
+
         }
-       public ActionResult Cancel(int? id)
+
+        [HttpPost]
+        public ActionResult Cancel([Bind(Include = "ID,CreditCardNumber,TotalPrice,Insurance,ParticipantNumber,ParticipantUnderTwelveNumber,CreatedAt,CustomerID,TripID,Statut")] Reservation reservation)
         {
-            if (id ==null)
+
+            if (ModelState.IsValid)
+            {
+                db.Entry(reservation).State = EntityState.Modified;
+                reservation.Statut = 0;
+                db.SaveChanges();
+                return RedirectToAction("List");
+            }
+
+            return RedirectToAction("Index", "Home");
+
+
+
+        }
+        [HttpPost]
+        public ActionResult List(int? id)
+        {
+            if (id != null)
+            {
+                var liste = db.Reservations.Include(x => x.CustomerID);
+                return View(liste);
+            }
+            else
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            Reservation reservation = db.Reservations.Find(id);
-           
-            return RedirectToAction("Index");
-
-
-           
-        }       
-       
+        }
     }
 }
