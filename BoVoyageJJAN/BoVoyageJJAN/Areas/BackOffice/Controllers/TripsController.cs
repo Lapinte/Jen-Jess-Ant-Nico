@@ -17,7 +17,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         private JjanDbContext db = new JjanDbContext();
 
         // GET: BackOffice/Trips
-        public ActionResult Index(TripSearchViewModel model)
+       /* public ActionResult Index(TripSearchViewModel model)
         {
             if (model == null)
             {
@@ -25,8 +25,8 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
                 return View(trips.ToList());
             }
             IEnumerable<Trip> liste = db.Trips.Include(t => t.Agency).Include(t => t.Destination);
-            if ()
-        }
+            //if ()
+        }*/
         
 
 

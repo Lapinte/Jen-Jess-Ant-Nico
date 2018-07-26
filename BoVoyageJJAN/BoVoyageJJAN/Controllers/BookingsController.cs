@@ -30,7 +30,7 @@ namespace BoVoyageJJAN.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [AuthenticationCustomerFilter]
+        [AuthenticationUserFilter]
         public ActionResult Create([Bind(Include = "ID,CreditCardNumber,TotalPrice,Insurance,ParticipantNumber,ParticipantUnderTwelveNumber,CreatedAt,CustomerID,TripID")] Reservation reservation)
         {
             /* var old= db.Reservations.SingleOrDefault(x => x.ID == reservation.ID);
@@ -59,7 +59,7 @@ namespace BoVoyageJJAN.Controllers
                 db.SaveChanges();
                 return View();
             }
-            ViewBag.ReservationID = new SelectList(db.Reservations, "TotalPrice", "ParticipantNumber", "ParticipantUnderTwelveNumber", "TripID", "ID");
+            ViewBag.Reservation = new SelectList(db.Reservations, "TotalPrice", "ParticipantNumber", "ParticipantUnderTwelveNumber", "TripID", "ID");
             return View();
 
 
