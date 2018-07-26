@@ -176,6 +176,8 @@
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AgenciesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CustomersBOController.cs" />
+    <Compile Include="Controllers\AuthenticationUserController.cs" />
+    <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ReservationsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\TripsController.cs" />
     <Compile Include="Controllers\AuthenticationCustomerController.cs" />
@@ -183,9 +185,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CommercialsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DestinationsController.cs" />
-    <Compile Include="Controllers\ReservationsController.cs" />
+    <Compile Include="Controllers\BookingsController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
-    <Compile Include="Controllers\TripsController.cs" />
+    <Compile Include="Controllers\TravelsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AuthenticationCommercialController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\BackOffice\Models\AuthenticationViewModels.cs" />
@@ -211,6 +213,10 @@
     <Compile Include="Migrations\201807260919316_ModificationTableauDeBytes.cs" />
     <Compile Include="Migrations\201807260919316_ModificationTableauDeBytes.Designer.cs">
       <DependentUpon>201807260919316_ModificationTableauDeBytes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807261024403_AddStatut.cs" />
+    <Compile Include="Migrations\201807261024403_AddStatut.Designer.cs">
+      <DependentUpon>201807261024403_AddStatut.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Trip.cs" />
@@ -262,11 +268,11 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Customers\Create.cshtml" />
-    <Content Include="Views\Customers\Delete.cshtml" />
-    <Content Include="Views\Customers\Details.cshtml" />
-    <Content Include="Views\Customers\Edit.cshtml" />
-    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Accounts\Create.cshtml" />
+    <Content Include="Views\Accounts\Delete.cshtml" />
+    <Content Include="Views\Accounts\Details.cshtml" />
+    <Content Include="Views\Accounts\Edit.cshtml" />
+    <Content Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Shared\_LayoutForm.cshtml" />
     <Content Include="Views\Trips\Create.cshtml" />
@@ -282,7 +288,7 @@
     <Content Include="Views\Shared\_TopFiveCheap.cshtml" />
     <Content Include="Views\Shared\_TopFiveRush.cshtml" />
     <Content Include="Views\Shared\_TopFiveCountry.cshtml" />
-    <Content Include="Views\AuthenticationCustomer\Login.cshtml" />
+    <Content Include="Views\AuthenticationUser\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -305,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807260919316_ModificationTableauDeBytes.resx">
       <DependentUpon>201807260919316_ModificationTableauDeBytes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807261024403_AddStatut.resx">
+      <DependentUpon>201807261024403_AddStatut.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

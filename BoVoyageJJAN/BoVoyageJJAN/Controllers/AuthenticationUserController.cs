@@ -11,15 +11,17 @@ using BoVoyageJJAN.Controllers;
 
 namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
-    public class AuthenticationCustomerController : BaseController
+    public class AuthenticationUserController : BaseController
     {
-        // GET: AuthenticationCustomer/Login
+        // GET: AuthenticationUser/Login
         public ActionResult Login()
         {
+            ViewBag.Civilities = db.Civilities.ToList();
+
             return View();
         }
 
-        // POST: AuthenticationCustomer/Login
+        // POST: AuthenticationUser/Login
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Login(AuthenticationLoginViewModel model)
@@ -30,20 +32,20 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
                 var customer = db.Customers.SingleOrDefault(x => x.Mail == model.Login && x.Password == passwordHash);
                 if (customer == null)
                 {
-                    ViewBag.ErrorMessage = "Utilisateur ou mot de passe incorrect.";
+                    ViewBag.ErrorMessage = "Utilisateur ou mot de passe incorrect";
 
                     return View(model);
                 }
                 else
                 {
-                    Session.Add("CUSTOMER_BO", customer);
+                    Session.Add("USER_BO", customer);
                     return RedirectToAction("Index", "Home", new { area = "" });
                 }
             }
             return View(model);
         }
 
-        // GET: AuthenticationCustomer/Logout
+        // GET: AuthenticationUser/Logout
         [AuthenticationCustomerFilter]
         public ActionResult Logout()
         {
