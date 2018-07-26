@@ -37,7 +37,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             return View(model);
         }
 
-        // GET: BackOffice/CustomersBO/Details/5
+        // GET: BackOffice/Customers/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -113,26 +113,6 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         public ActionResult Search()
         {
             return View();
-        }
-
-        //GET: Customers/GetSearch
-        public ActionResult Search(string Lastname = "", string Firstname = "", string Address = "", string Phone = "", string Mail = "", DateTime? BirthDate = null)
-        {
-            IQueryable<Customer> liste = db.Customers;
-            if (!string.IsNullOrWhiteSpace(Lastname))
-                liste = liste.Where(x => x.Lastname.Contains(Lastname));
-            if (!string.IsNullOrWhiteSpace(Firstname))
-                liste = liste.Where(x => x.Firstname.Contains(Firstname));
-            if (!string.IsNullOrWhiteSpace(Address))
-                liste = liste.Where(x => x.Address.Contains(Address));
-            if (!string.IsNullOrWhiteSpace(Phone))
-                liste = liste.Where(x => x.Phone.Contains(Phone));
-            if (!string.IsNullOrWhiteSpace(Mail))
-                liste = liste.Where(x => x.Mail.Contains(Mail));
-            if (BirthDate != null)
-                liste = liste.Where(x => x.BirthDate == BirthDate);
-
-            return View("Index", liste);
         }
 
         // GET: BackOffice/CustomersBO/Delete/5
