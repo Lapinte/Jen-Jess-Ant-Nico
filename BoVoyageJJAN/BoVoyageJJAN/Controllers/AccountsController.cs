@@ -29,7 +29,7 @@ namespace BoVoyageJJAN.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
+            Customer customer = db.Customers.Include(c => c.Civility).SingleOrDefault(x => x.ID == id);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -87,10 +87,18 @@ namespace BoVoyageJJAN.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Mail,Password,Lastname,Firstname,Address,Phone,BirthDate,CivilityID")] Customer customer)
+        public ActionResult Edit([Bind(Include = "ID,Lastname,Firstname,Password,Address,Phone,BirthDate,CivilityID")] Customer customer)
         {
+            
+            var old = db.Customers.SingleOrDefault(x=>x.ID == customer.ID);
+            customer.Mail = old.Mail;
+            db.Entry(old).State = EntityState.Detached;
+
             if (ModelState.IsValid)
             {
+                db.Configuration.ValidateOnSaveEnabled = false;
+                customer.Password = customer.Password.HashMD5();
+
                 db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
                 DisplayMessage("Modifications enregistrées", MessageType.SUCCESS);

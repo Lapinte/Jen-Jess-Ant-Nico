@@ -126,7 +126,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         }
 
         [HttpPost]
-        public ActionResult addParticipant(int id, Participant participant)
+        public ActionResult AddParticipant(int resevationID, Participant participant)
         {
             if (participant != null)
             {

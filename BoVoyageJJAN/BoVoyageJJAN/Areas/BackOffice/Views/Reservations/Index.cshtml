@@ -33,6 +33,9 @@
             @Html.DisplayNameFor(model => model.ParticipantUnderTwelveNumber)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Statut)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.CreatedAt)
         </th>
         <th></th>
@@ -62,12 +65,18 @@
             @Html.DisplayFor(modelItem => item.ParticipantUnderTwelveNumber)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Statut)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.CreatedAt)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            @*<a href="@Url.Action("Edit", new { id=item.ID})"><i class="fa fa-edit text-warning"></i></a>
+            <a href="@Url.Action("Details", new { id=item.ID})"><i class="fa fa-search"></i></a>
+            <a href="@Url.Action("Delete", new { id=item.ID})"><i class="fa fa-trash"></i></a>*@
         </td>
     </tr>
 }

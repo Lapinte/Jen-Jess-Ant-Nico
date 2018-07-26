@@ -6,13 +6,13 @@ using System.Web.Mvc;
 
 namespace BoVoyageJJAN.Filter
 {
-    public class AuthenticationCustomerFilter : ActionFilterAttribute
+    public class AuthenticationUserFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (filterContext.HttpContext.Session["CUSTOMER_BO"] == null)
+            if (filterContext.HttpContext.Session["USER_BO"] == null)
             {
-                filterContext.Result = new RedirectResult("\\BackOffice\\AuthenticationCustomer\\Login");
+                filterContext.Result = new RedirectResult("\\BackOffice\\AuthenticationUser\\Login");
             }
         }
     }

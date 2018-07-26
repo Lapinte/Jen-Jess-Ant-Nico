@@ -176,6 +176,8 @@
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AgenciesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CustomersController.cs" />
+    <Compile Include="Areas\BackOffice\Models\TripSearchViewModel.cs" />
+    <Compile Include="Areas\BackOffice\Models\CustomerSearchViewModel.cs" />
     <Compile Include="Controllers\AuthenticationUserController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ReservationsController.cs" />
@@ -191,7 +193,7 @@
     <Compile Include="Areas\BackOffice\Models\AuthenticationViewModels.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Data\JjanDbContext.cs" />
-    <Compile Include="Filter\AuthenticationCustomerFilter .cs" />
+    <Compile Include="Filter\AuthenticationUserFilter .cs" />
     <Compile Include="Filter\AuthenticationCommercialFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
