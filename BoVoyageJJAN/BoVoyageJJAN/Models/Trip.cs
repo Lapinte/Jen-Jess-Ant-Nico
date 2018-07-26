@@ -42,5 +42,7 @@ namespace BoVoyageJJAN.Models
 
         [ForeignKey("AgencyID")]
         public Agency Agency { get; set; }
+
+        public ICollection <TripFile> TripFiles { get; set; }
     }
 }
