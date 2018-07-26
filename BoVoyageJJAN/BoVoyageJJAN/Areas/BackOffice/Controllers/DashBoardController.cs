@@ -14,6 +14,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         // GET: BackOffice/DashBoard
         public ActionResult Index()
         {
+            
             return View();
         }
     }

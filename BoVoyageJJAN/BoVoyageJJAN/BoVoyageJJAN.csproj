@@ -165,7 +165,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AgenciesController.cs" />
-    <Compile Include="Areas\BackOffice\Controllers\CustomersBOController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\CustomersController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\SharedController.cs" />
     <Compile Include="Controllers\AuthenticationCustomerController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -199,6 +200,10 @@
     <Compile Include="Migrations\201807260919316_ModificationTableauDeBytes.cs" />
     <Compile Include="Migrations\201807260919316_ModificationTableauDeBytes.Designer.cs">
       <DependentUpon>201807260919316_ModificationTableauDeBytes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807261024403_AddStatut.cs" />
+    <Compile Include="Migrations\201807261024403_AddStatut.Designer.cs">
+      <DependentUpon>201807261024403_AddStatut.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Trip.cs" />
@@ -298,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807260919316_ModificationTableauDeBytes.resx">
       <DependentUpon>201807260919316_ModificationTableauDeBytes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807261024403_AddStatut.resx">
+      <DependentUpon>201807261024403_AddStatut.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
