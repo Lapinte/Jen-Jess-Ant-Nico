@@ -171,9 +171,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CommercialsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DestinationsController.cs" />
-    <Compile Include="Controllers\ReservationsController.cs" />
+    <Compile Include="Controllers\BookingsController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
-    <Compile Include="Controllers\TripsController.cs" />
+    <Compile Include="Controllers\TravelsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AuthenticationCommercialController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\BackOffice\Models\AuthenticationViewModels.cs" />
@@ -271,6 +271,11 @@
     <Content Include="Views\Shared\_TopFiveRush.cshtml" />
     <Content Include="Views\Shared\_TopFiveCountry.cshtml" />
     <Content Include="Views\AuthenticationCustomer\Login.cshtml" />
+    <Content Include="Views\Travels\Create.cshtml" />
+    <Content Include="Views\Travels\Delete.cshtml" />
+    <Content Include="Views\Travels\Details.cshtml" />
+    <Content Include="Views\Travels\Edit.cshtml" />
+    <Content Include="Views\Travels\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
