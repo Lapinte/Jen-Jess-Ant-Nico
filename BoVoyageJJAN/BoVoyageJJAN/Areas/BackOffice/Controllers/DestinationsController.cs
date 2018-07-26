@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -120,12 +121,25 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         [HttpPost]
         public ActionResult AddFile(int id, HttpPostedFileBase upload)
         {
+            if (upload == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             if (upload.ContentLength > 0)
             {
                 var file = new DestinationFile();
                 file.DestinationID = id;
                 file.Name = upload.FileName;
                 file.ContentType = upload.ContentType;
+
+                // convertit la valeur du fichier string en binaire
+                using (var reader = new BinaryReader(upload.InputStream))
+                {
+                    file.Content = reader.ReadBytes(upload.ContentLength);
+                }
+                db.DestinationFiles.Add(file);
+                db.SaveChanges();
 
                 return RedirectToAction("Edit", new { id = file.DestinationID });
             }

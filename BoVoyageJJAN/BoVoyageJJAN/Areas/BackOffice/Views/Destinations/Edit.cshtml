@@ -15,18 +15,18 @@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    
-    
+
+
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-        
+
         <div class="form-horizontal">
             <h4>Destination</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.ID)
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Continent, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -34,7 +34,7 @@
                     @Html.ValidationMessageFor(model => model.Continent, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -42,7 +42,7 @@
                     @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Region, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -50,7 +50,7 @@
                     @Html.ValidationMessageFor(model => model.Region, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -58,15 +58,38 @@
                     @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                 </div>
             </div>
-    
+
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Save" class="btn btn-default" />
                 </div>
             </div>
         </div>
+        <form action="@Url.Action("AddFile","Destination")" method="post" enctype="multipart/form-data">
+            @Html.HiddenFor(x => x.ID)
+            <div class="form-group">
+                <label> Fichier</label>
+                <input type="File" name="upload" class="form-control" />
+
+            </div>
+            <button type="submit" class="btn btn-warning">Ajouter</button>
+
+
+        </form>
+       
+        @foreach (var file in Model.Files)
+        {
+           
+                <img class="img-thumbnail" title="@file.Name" src="data:@file.ContentType;base64, @System.Convert.ToBase64String(file.Content)" />
+                <a href="@Url.Action("DeletedFile","Destination",new {id=file.ID })" class="btn btn-outline-info"></a>
+
+
+            }
+
+
     }
-    
+    }
+
     <div>
         @Html.ActionLink("Back to List", "Index")
     </div>
