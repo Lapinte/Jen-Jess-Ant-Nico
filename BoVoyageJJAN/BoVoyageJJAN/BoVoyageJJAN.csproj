@@ -182,6 +182,10 @@
     <Compile Include="Migrations\201807251256353_Init.Designer.cs">
       <DependentUpon>201807251256353_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807260711435_TripFile.cs" />
+    <Compile Include="Migrations\201807260711435_TripFile.Designer.cs">
+      <DependentUpon>201807260711435_TripFile.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Trip.cs" />
     <Compile Include="Models\Reservation.cs" />
@@ -265,6 +269,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807251256353_Init.resx">
       <DependentUpon>201807251256353_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807260711435_TripFile.resx">
+      <DependentUpon>201807260711435_TripFile.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

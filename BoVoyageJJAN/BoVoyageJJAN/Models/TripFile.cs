@@ -22,7 +22,7 @@ namespace BoVoyageJJAN.Models
 
 
         public int TripID { get; set; }
-        [ForeignKey("TripId")]
+        [ForeignKey("TripID")]
         public Trip Trip { get; set; }
     }
 }
