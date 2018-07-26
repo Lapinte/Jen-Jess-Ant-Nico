@@ -142,32 +142,7 @@ namespace BoVoyageJJAN.Controllers
             db.Trips.Remove(trip);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public ActionResult AddFile(int id, HttpPostedFileBase upload)
-        {
-            if (upload.ContentLength > 0)
-            {
-                var file = new TripFile();
-                file.TripID = id;
-                file.Name = upload.FileName;
-                file.ContentType = upload.ContentType;
-
-                return RedirectToAction("Edit", new { id = file.TripID });
-            }
-            else
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-        }
-        [HttpPost]
-        public ActionResult DeleteFile (int id)
-        {
-            TripFile tripFile = db.TripFiles.Find(id);
-            db.TripFiles.Remove(tripFile);
-            db.SaveChanges();
-            return View();
-        }
-
+        }   
+      
     }
 }
