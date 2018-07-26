@@ -30,19 +30,19 @@
                             Voyages
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="@Url.Action("Index","Trips")">Liste des voyages</a>
-                            <a class="dropdown-item" href="@Url.Action("Search","Trips")">Rechercher un voyage</a>
+                            <a class="dropdown-item" href="@Url.Action("Index","Trips", new { area = "" })">Liste des voyages</a>
+                            <a class="dropdown-item" href="@Url.Action("Search","Trips", new { area = "" })">Rechercher un voyage</a>
                         </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Reservations")">Réservation</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="@Url.Action("Index","Customers")" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="@Url.Action("Index","Customers", new { area = ""})" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Clients
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="@Url.Action("Index", "Customers")">Liste des clients</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "Customers", new { area ="" })">Liste des clients</a>
                             <a class="dropdown-item" href="@Url.Action("Search", "Customers")">Rechercher un client</a>
                             <a class="dropdown-item" href="@Url.Action("Download", "Customers")">Télécharger un fichier client</a>
                         </div>

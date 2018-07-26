@@ -7,7 +7,7 @@ using System.Web;
 
 namespace BoVoyageJJAN.Models
 {
-    public class TripFile : BaseModel
+    public class DestinationFile : BaseModel
     {
         [Required(ErrorMessage = "Champ {0} obligatoire")]
         [StringLength(254)]
@@ -21,8 +21,8 @@ namespace BoVoyageJJAN.Models
         public byte Content { get; set; }
 
 
-        public int TripID { get; set; }
-        [ForeignKey("TripID")]
-        public Trip Trip { get; set; }
+        public int DestinationID { get; set; }
+        [ForeignKey("DestinationID")]
+        public Destination Destination { get; set; }
     }
 }

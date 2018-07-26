@@ -262,6 +262,7 @@
     <Content Include="Views\Shared\_TopFiveCheap.cshtml" />
     <Content Include="Views\Shared\_TopFiveRush.cshtml" />
     <Content Include="Views\Shared\_TopFiveCountry.cshtml" />
+    <Content Include="Views\AuthenticationCustomer\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

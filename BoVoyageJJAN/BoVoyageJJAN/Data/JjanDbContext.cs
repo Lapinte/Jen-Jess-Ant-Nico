@@ -30,7 +30,7 @@ namespace BoVoyageJJAN.Data
 
         public DbSet<Trip> Trips { get; set; }
 
-        public DbSet<TripFile> TripFiles { get; set; }
+        public DbSet<DestinationFile> DestinationFiles { get; set; }
 
     }
 }
