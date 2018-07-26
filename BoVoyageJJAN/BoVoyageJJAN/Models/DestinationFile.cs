@@ -18,7 +18,7 @@ namespace BoVoyageJJAN.Models
         public string ContentType { get; set; }
 
         [Required(ErrorMessage = "Champ {0} obligatoire")]
-        public byte Content { get; set; }
+        public byte[] Content { get; set; }
 
 
         public int DestinationID { get; set; }
