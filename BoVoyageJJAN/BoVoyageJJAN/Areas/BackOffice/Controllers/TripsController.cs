@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BoVoyageJJAN.Areas.BackOffice.Models;
 using BoVoyageJJAN.Data;
 using BoVoyageJJAN.Models;
 
@@ -16,11 +17,18 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         private JjanDbContext db = new JjanDbContext();
 
         // GET: BackOffice/Trips
-        public ActionResult Index()
+        public ActionResult Index(TripSearchViewModel model)
         {
-            var trips = db.Trips.Include(t => t.Agency).Include(t => t.Destination);
-            return View(trips.ToList());
+            if (model == null)
+            {
+                var trips = db.Trips.Include(t => t.Agency).Include(t => t.Destination);
+                return View(trips.ToList());
+            }
+            IEnumerable<Trip> liste = db.Trips.Include(t => t.Agency).Include(t => t.Destination);
+            if ()
         }
+        
+
 
         // GET: BackOffice/Trips/Details/5
         public ActionResult Details(int? id)
@@ -100,7 +108,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         }
 
         //GET: Trips/Search
-        public IQueryable<Trip> GetSearch(DateTime? departureDate = null, DateTime? returnDate = null, int? placeNumber = null, decimal? price = null, int? destinationId = null, int? agencyId = null)
+        public ActionResult Search(DateTime? departureDate = null, DateTime? returnDate = null, int? placeNumber = null, decimal? price = null, int? destinationId = null, int? agencyId = null)
         {
             IQueryable<Trip> liste = db.Trips;
             if (departureDate != null)
@@ -116,7 +124,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             if (agencyId != null)
                 liste = liste.Where(x => x.AgencyID == agencyId);
 
-            return liste;
+            return View("Index", liste);
         }
 
         // GET: BackOffice/Trips/Delete/5

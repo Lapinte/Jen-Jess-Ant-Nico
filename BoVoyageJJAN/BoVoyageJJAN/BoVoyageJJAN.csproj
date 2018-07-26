@@ -176,6 +176,8 @@
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AgenciesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CustomersController.cs" />
+    <Compile Include="Areas\BackOffice\Models\TripSearchViewModel.cs" />
+    <Compile Include="Areas\BackOffice\Models\CustomerSearchViewModel.cs" />
     <Compile Include="Controllers\AuthenticationUserController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\ReservationsController.cs" />

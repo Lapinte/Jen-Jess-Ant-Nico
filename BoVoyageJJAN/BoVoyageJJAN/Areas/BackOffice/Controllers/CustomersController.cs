@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using BoVoyageJJAN.Areas.BackOffice.Models;
 using BoVoyageJJAN.Data;
 using BoVoyageJJAN.Models;
 
@@ -15,11 +16,25 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
     {
         private JjanDbContext db = new JjanDbContext();
 
-        // GET: BackOffice/CustomersBO
-        public ActionResult Index()
+        // GET: BackOffice/Customers
+        
+        public ActionResult Index(CustomerSearchViewModel model)
         {
-            var customers = db.Customers.Include(c => c.Civility);
-            return View(customers.ToList());
+
+            IEnumerable<Customer> liste = db.Customers.Include(c => c.Civility);
+            if (!string.IsNullOrWhiteSpace(model.Lastname))
+                liste = db.Customers.Where(x => x.Lastname.Contains(model.Lastname));
+            if (!string.IsNullOrWhiteSpace(model.Firstname))
+                liste = db.Customers.Where(x => x.Firstname.Contains(model.Firstname));
+            if (!string.IsNullOrWhiteSpace(model.Mail))
+                liste = db.Customers.Where(x => x.Mail.Contains(model.Mail));
+            if (model.BirthDateMin != null)
+                liste = liste.Where(x => x.BirthDate >= model.BirthDateMin);
+            if (model.BirthDateMax != null)
+                liste = liste.Where(x => x.BirthDate <= model.BirthDateMax);
+
+            model.Customers = liste.ToList();
+            return View(model);
         }
 
         // GET: BackOffice/CustomersBO/Details/5
@@ -94,9 +109,14 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             ViewBag.CivilityID = new SelectList(db.Civilities, "ID", "Label", customer.CivilityID);
             return View(customer);
         }
-
         //GET: Customers/Search
-        public ActionResult GetSearch(string Lastname ="", string Firstname ="", string Address="", string Phone="", string Mail="", DateTime? BirthDate =null)
+        public ActionResult Search()
+        {
+            return View();
+        }
+
+        //GET: Customers/GetSearch
+        public ActionResult Search(string Lastname = "", string Firstname = "", string Address = "", string Phone = "", string Mail = "", DateTime? BirthDate = null)
         {
             IQueryable<Customer> liste = db.Customers;
             if (!string.IsNullOrWhiteSpace(Lastname))
@@ -112,7 +132,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             if (BirthDate != null)
                 liste = liste.Where(x => x.BirthDate == BirthDate);
 
-            return View("Index",liste);
+            return View("Index", liste);
         }
 
         // GET: BackOffice/CustomersBO/Delete/5

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BoVoyageJJAN.Models.Trip>
+﻿@model BoVoyageJJAN.Areas.BackOffice.Models.TripSearchViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -7,7 +7,10 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Ajouter voyage", "Create")
+</p>
+<p>
+    @Html.ActionLink("Recherche avancée", "GetSearch")
 </p>
 <table class="table">
     <tr>
