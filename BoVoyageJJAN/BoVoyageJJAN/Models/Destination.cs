@@ -28,5 +28,7 @@ namespace BoVoyageJJAN.Models
         [Display(Name = "Description")]
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
+
+        public ICollection <DestinationFile> Files { get; set; }
     }
 }
