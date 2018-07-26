@@ -198,25 +198,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807251256353_Init.cs" />
-    <Compile Include="Migrations\201807251256353_Init.Designer.cs">
-      <DependentUpon>201807251256353_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201807261915599_BaseLocal.cs" />
+    <Compile Include="Migrations\201807261915599_BaseLocal.Designer.cs">
+      <DependentUpon>201807261915599_BaseLocal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807260711435_TripFile.cs" />
-    <Compile Include="Migrations\201807260711435_TripFile.Designer.cs">
-      <DependentUpon>201807260711435_TripFile.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807260757420_DestinationFile.cs" />
-    <Compile Include="Migrations\201807260757420_DestinationFile.Designer.cs">
-      <DependentUpon>201807260757420_DestinationFile.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807260919316_ModificationTableauDeBytes.cs" />
-    <Compile Include="Migrations\201807260919316_ModificationTableauDeBytes.Designer.cs">
-      <DependentUpon>201807260919316_ModificationTableauDeBytes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807261024403_AddStatut.cs" />
-    <Compile Include="Migrations\201807261024403_AddStatut.Designer.cs">
-      <DependentUpon>201807261024403_AddStatut.cs</DependentUpon>
+    <Compile Include="Migrations\201807262051026_ModifCustomerParticipant.cs" />
+    <Compile Include="Migrations\201807262051026_ModifCustomerParticipant.Designer.cs">
+      <DependentUpon>201807262051026_ModifCustomerParticipant.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Trip.cs" />
@@ -235,6 +223,7 @@
     <Compile Include="Utils\Validator\DateGreaterThanAttribute.cs" />
     <Compile Include="Utils\Validator\ExistingMailCommercial.cs" />
     <Compile Include="Utils\Validator\ExistingMailCustomer.cs" />
+    <Compile Include="Utils\Validator\Major.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -299,27 +288,18 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807251256353_Init.resx">
-      <DependentUpon>201807251256353_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807260711435_TripFile.resx">
-      <DependentUpon>201807260711435_TripFile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807260757420_DestinationFile.resx">
-      <DependentUpon>201807260757420_DestinationFile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807260919316_ModificationTableauDeBytes.resx">
-      <DependentUpon>201807260919316_ModificationTableauDeBytes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807261024403_AddStatut.resx">
-      <DependentUpon>201807261024403_AddStatut.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201807261915599_BaseLocal.resx">
+      <DependentUpon>201807261915599_BaseLocal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807262051026_ModifCustomerParticipant.resx">
+      <DependentUpon>201807262051026_ModifCustomerParticipant.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -9,8 +9,13 @@ namespace BoVoyageJJAN.Utils.Validator
 {
     public class ExistingMailCommercial : ValidationAttribute
     {
+
         public override bool IsValid(object value)
         {
+            if (value == null)
+            {
+                return false;
+            }
             using (JjanDbContext db = new JjanDbContext())
             {
                 return !db.Commercials.Any(x => x.Mail == value.ToString());

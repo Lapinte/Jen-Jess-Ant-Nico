@@ -1,17 +1,9 @@
 ﻿@model BoVoyageJJAN.Models.Commercial
 
 @{
-    Layout = null;
+    Layout = "~/Areas/BackOffice/Views/Shared/_LayoutBO.cshtml";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
     <div>
         <h4>Commercial</h4>
         <hr />
@@ -40,19 +32,10 @@
                 @Html.DisplayFor(model => model.Mail)
             </dd>
     
-            <dt>
-                @Html.DisplayNameFor(model => model.Password)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Password)
-            </dd>
-    
         </dl>
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Retour à la liste", "Index")
     </p>
-</body>
-</html>
+

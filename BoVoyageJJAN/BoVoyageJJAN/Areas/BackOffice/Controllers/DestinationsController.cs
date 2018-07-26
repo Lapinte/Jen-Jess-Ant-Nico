@@ -68,7 +68,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Destination destination = db.Destinations.Find(id);
+            Destination destination = db.Destinations.Include(x=>x.Files).SingleOrDefault(x=>x.ID ==id);
             if (destination == null)
             {
                 return HttpNotFound();
@@ -123,37 +123,42 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         {
             if (upload == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                TempData["Message"] = "Aucun fichier selectionné";
+                return RedirectToAction("Edit", new { id });
             }
 
             if (upload.ContentLength > 0)
             {
-                var file = new DestinationFile();
-                file.DestinationID = id;
-                file.Name = upload.FileName;
-                file.ContentType = upload.ContentType;
+                var model = new DestinationFile();
 
-                // convertit la valeur du fichier string en binaire
+                model.DestinationID = id;
+                model.Name = upload.FileName;
+                model.ContentType = upload.ContentType;
+
                 using (var reader = new BinaryReader(upload.InputStream))
                 {
-                    file.Content = reader.ReadBytes(upload.ContentLength);
+                    model.Content = reader.ReadBytes(upload.ContentLength);
                 }
-                db.DestinationFiles.Add(file);
-                db.SaveChanges();
 
-                return RedirectToAction("Edit", new { id = file.DestinationID });
+                db.DestinationFiles.Add(model);
+                db.SaveChanges();
+                TempData["Message"] = "Fichier ajouté";
+                return RedirectToAction("Edit", new { id = model.DestinationID });
+
             }
             else
+            {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
+            }
         }
-        [HttpPost]
+
         public ActionResult DeleteFile(int id)
         {
-            DestinationFile destinationFile = db.DestinationFiles.Find(id);
-            db.DestinationFiles.Remove(destinationFile);
+            DestinationFile roomfile = db.DestinationFiles.Find(id);
+            db.DestinationFiles.Remove(roomfile);
             db.SaveChanges();
-            return View();
+            TempData["Message"] = "Fichier supprimé";
+            return RedirectToAction("Edit", new { id = roomfile.DestinationID });
         }
 
     }

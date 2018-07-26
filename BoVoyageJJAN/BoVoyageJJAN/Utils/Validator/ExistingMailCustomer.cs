@@ -11,6 +11,10 @@ namespace BoVoyageJJAN.Utils.Validator
     {
         public override bool IsValid(object value)
         {
+            if (value == null)
+            {
+                return false;
+            }
             using (JjanDbContext db = new JjanDbContext())
             {
                 return !db.Customers.Any(x => x.Mail == value.ToString());

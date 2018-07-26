@@ -30,11 +30,6 @@ namespace BoVoyageJJAN.Models
         public string Phone { get; set; }
 
         [Required(ErrorMessage = "Le champ {0} est requis")]
-        [Display(Name = "Date de naissance")]
-        [DataType(DataType.Date)]
-        public DateTime BirthDate { get; set; }
-
-        [Required(ErrorMessage = "Le champ {0} est requis")]
         [Display(Name = "Civilité")]
         public int CivilityID { get; set; }
 

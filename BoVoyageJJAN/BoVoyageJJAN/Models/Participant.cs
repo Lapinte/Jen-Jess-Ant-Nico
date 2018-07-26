@@ -16,6 +16,11 @@ namespace BoVoyageJJAN.Models
         [ForeignKey("ReservationID")]
         public Reservation Reservation { get; set; }
 
-        
+        [Required(ErrorMessage = "Le champ {0} est requis")]
+        [Display(Name = "Date de naissance")]
+        [DataType(DataType.Date)]
+        public DateTime BirthDate { get; set; }
+
+
     }
 }

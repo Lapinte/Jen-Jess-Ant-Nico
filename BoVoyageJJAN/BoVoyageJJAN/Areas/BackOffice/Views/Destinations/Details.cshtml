@@ -1,17 +1,10 @@
 ﻿@model BoVoyageJJAN.Models.Destination
 
 @{
-    Layout = null;
+    Layout = "~/Areas/BackOffice/Views/Shared/_LayoutBO.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
     <div>
         <h4>Destination</h4>
         <hr />
@@ -52,7 +45,6 @@
     </div>
     <p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Retour à la liste", "Index")
     </p>
-</body>
-</html>
+

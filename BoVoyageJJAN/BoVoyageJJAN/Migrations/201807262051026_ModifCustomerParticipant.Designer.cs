@@ -7,13 +7,13 @@ namespace BoVoyageJJAN.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Init : IMigrationMetadata
+    public sealed partial class ModifCustomerParticipant : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ModifCustomerParticipant));
         
         string IMigrationMetadata.Id
         {
-            get { return "201807251256353_Init"; }
+            get { return "201807262051026_ModifCustomerParticipant"; }
         }
         
         string IMigrationMetadata.Source

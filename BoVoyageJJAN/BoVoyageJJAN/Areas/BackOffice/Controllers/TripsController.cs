@@ -44,7 +44,8 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
              {
                  return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
              }
-             Trip trip = db.Trips.Find(id);
+
+             Trip trip = db.Trips.Include(x=>x.Agency).Include(x=>x.Destination).SingleOrDefault(x=>x.ID == id);
              if (trip == null)
              {
                  return HttpNotFound();
@@ -121,8 +122,8 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
              {
                  return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
              }
-             Trip trip = db.Trips.Find(id);
-             if (trip == null)
+            Trip trip = db.Trips.Include(x => x.Agency).Include(x => x.Destination).SingleOrDefault(x => x.ID == id);
+            if (trip == null)
              {
                  return HttpNotFound();
              }

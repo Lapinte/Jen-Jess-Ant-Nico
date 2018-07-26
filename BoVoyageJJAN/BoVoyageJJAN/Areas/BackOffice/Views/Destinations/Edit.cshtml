@@ -1,100 +1,85 @@
 ﻿@model BoVoyageJJAN.Models.Destination
 
 @{
-    Layout = null;
+    Layout = "~/Areas/BackOffice/Views/Shared/_LayoutBO.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Edit</title>
-</head>
-<body>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <h4>Destination</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.ID)
+    <div class="form-horizontal">
+        <h4>Destination</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Continent, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Continent, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Continent, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Region, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Region, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Region, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Continent, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Continent, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Continent, "", new { @class = "text-danger" })
             </div>
         </div>
-        <form action="@Url.Action("AddFile","Destinations")" method="post" enctype="multipart/form-data">
-            @Html.HiddenFor(x => x.ID)
-            <div class="form-group">
-                <label> Fichier</label>
-                <input id="file" type="File" name="upload" class="form-control" />
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
             </div>
-            <button type="submit" class="btn btn-warning">Ajouter</button>
+        </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.Region, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Region, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Region, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-        </form>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-
-
-    }
-    @*
-        <div class="row">
-             @foreach (var file in Model.Files)
-         {
-             <img class="img-thumbnail" title="@file.Name" src="data:@file.ContentType;base64, @System.Convert.ToBase64String(file.Content)" />
-             <a href="@Url.Action("DeletedFile","Destinations",new {id=file.ID })" class="btn btn-outline-info"></a>
-         }
-
-         </div>
-    *@
-
-
-
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
     </div>
-</body>
-</html>
+}
+
+<hr />
+
+@foreach (var file in Model.Files)
+{
+    <img src="data:@file.ContentType;base64,@Convert.ToBase64String(file.Content)" height="150" />
+    <a href="@Url.Action("DeleteFile","Destinations", new { id=file.ID })" class="btn btn-info">Supprimer</a>
+}
+
+
+<form id="formAddFile" action="@Url.Action("Addfile","Destinations")" method="post" enctype="multipart/form-data">
+    @Html.HiddenFor(model => model.ID)
+    <div class="form-group">
+        <label class="control-label col-md-2">Fichier</label>
+        <input id="upload" type="file" value="" name="upload" class="form-control" />
+        <button type="submit" class="btn btn-warning">Ajouter la photo</button>
+    </div>
+
+</form>
+
+
+<div>
+    @Html.ActionLink("Retour à la liste", "Index")
+</div>

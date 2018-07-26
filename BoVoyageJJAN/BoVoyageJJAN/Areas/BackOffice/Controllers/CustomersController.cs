@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using BoVoyageJJAN.Areas.BackOffice.Models;
 using BoVoyageJJAN.Data;
 using BoVoyageJJAN.Models;
+using BoVoyageJJAN.Utils;
 
 namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
@@ -44,7 +45,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
+            Customer customer = db.Customers.Include(x=>x.Civility).SingleOrDefault(x=>x.ID == id);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -64,10 +65,13 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Mail,Password,Lastname,Firstname,Address,Phone,BirthDate,CivilityID")] Customer customer)
+        public ActionResult Create([Bind(Include = "ID,Mail,Password,Lastname,Firstname,Address,Phone,BirthDate,CivilityID,ConfirmedPassword")] Customer customer)
         {
             if (ModelState.IsValid)
             {
+                db.Configuration.ValidateOnSaveEnabled = false;
+                customer.Password = customer.Password.HashMD5();
+
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -122,7 +126,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Find(id);
+            Customer customer = db.Customers.Include(x => x.Civility).SingleOrDefault(x => x.ID == id);
             if (customer == null)
             {
                 return HttpNotFound();

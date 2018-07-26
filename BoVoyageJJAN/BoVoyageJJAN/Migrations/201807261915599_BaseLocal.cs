@@ -3,7 +3,7 @@ namespace BoVoyageJJAN.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Init : DbMigration
+    public partial class BaseLocal : DbMigration
     {
         public override void Up()
         {
@@ -52,8 +52,22 @@ namespace BoVoyageJJAN.Migrations
                         CivilityID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Civilities", t => t.CivilityID, cascadeDelete: false)
+                .ForeignKey("dbo.Civilities", t => t.CivilityID, cascadeDelete: true)
                 .Index(t => t.CivilityID);
+            
+            CreateTable(
+                "dbo.DestinationFiles",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false, maxLength: 254),
+                        ContentType = c.String(nullable: false, maxLength: 100),
+                        Content = c.Binary(nullable: false),
+                        DestinationID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Destinations", t => t.DestinationID, cascadeDelete: false)
+                .Index(t => t.DestinationID);
             
             CreateTable(
                 "dbo.Destinations",
@@ -96,7 +110,8 @@ namespace BoVoyageJJAN.Migrations
                         Insurance = c.Boolean(nullable: false),
                         ParticipantNumber = c.Int(nullable: false),
                         ParticipantUnderTwelveNumber = c.Int(nullable: false),
-                        CreatedAt = c.DateTime(nullable: false, defaultValueSql : "getDate()"),
+                        CreatedAt = c.DateTime(nullable: false),
+                        Statut = c.Int(nullable: false),
                         CustomerID = c.Int(nullable: false),
                         TripID = c.Int(nullable: false),
                     })
@@ -134,6 +149,7 @@ namespace BoVoyageJJAN.Migrations
             DropForeignKey("dbo.Participants", "ReservationID", "dbo.Reservations");
             DropForeignKey("dbo.Reservations", "CustomerID", "dbo.Customers");
             DropForeignKey("dbo.Participants", "CivilityID", "dbo.Civilities");
+            DropForeignKey("dbo.DestinationFiles", "DestinationID", "dbo.Destinations");
             DropForeignKey("dbo.Customers", "CivilityID", "dbo.Civilities");
             DropIndex("dbo.Trips", new[] { "AgencyID" });
             DropIndex("dbo.Trips", new[] { "DestinationID" });
@@ -141,11 +157,13 @@ namespace BoVoyageJJAN.Migrations
             DropIndex("dbo.Reservations", new[] { "CustomerID" });
             DropIndex("dbo.Participants", new[] { "CivilityID" });
             DropIndex("dbo.Participants", new[] { "ReservationID" });
+            DropIndex("dbo.DestinationFiles", new[] { "DestinationID" });
             DropIndex("dbo.Customers", new[] { "CivilityID" });
             DropTable("dbo.Trips");
             DropTable("dbo.Reservations");
             DropTable("dbo.Participants");
             DropTable("dbo.Destinations");
+            DropTable("dbo.DestinationFiles");
             DropTable("dbo.Customers");
             DropTable("dbo.Commercials");
             DropTable("dbo.Civilities");
