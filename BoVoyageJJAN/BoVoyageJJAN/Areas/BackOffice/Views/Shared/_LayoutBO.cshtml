@@ -51,9 +51,13 @@
                         <a class="nav-link" href="@Url.Action("Index", "Commercials")">Commercials</a>
                     </li>
                 </ul>
+                @if(commercial != null)
+                {
                 <span class="navbar-text">
                     Bonjour @commercial.Firstname @commercial.Lastname <a href="@Url.Action("Logout", "AuthenticationCommercial")" class="btn btn-warning"><i class="fa fa-eject"></i></a>
                 </span>
+                }
+                
 
             </div>
         </nav>

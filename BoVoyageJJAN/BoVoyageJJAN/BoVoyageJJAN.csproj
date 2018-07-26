@@ -128,11 +128,11 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Areas\BackOffice\Views\web.config" />
-    <Content Include="Areas\BackOffice\Views\CustomersBO\Create.cshtml" />
-    <Content Include="Areas\BackOffice\Views\CustomersBO\Delete.cshtml" />
-    <Content Include="Areas\BackOffice\Views\CustomersBO\Details.cshtml" />
-    <Content Include="Areas\BackOffice\Views\CustomersBO\Edit.cshtml" />
-    <Content Include="Areas\BackOffice\Views\CustomersBO\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Customers\Create.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Customers\Delete.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Customers\Details.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Customers\Edit.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Customers\Index.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />

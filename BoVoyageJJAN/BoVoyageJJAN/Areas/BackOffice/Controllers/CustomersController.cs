@@ -96,23 +96,23 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         }
 
         //GET: Customers/Search
-        public IQueryable<Customer> GetSearch(string? Lastname, string? Firstname = null, string? Address, string? Phone, DateTime? BirthDate, string? Mail)
+        public ActionResult GetSearch(string Lastname ="", string Firstname ="", string Address="", string Phone="", string Mail="", DateTime? BirthDate =null)
         {
             IQueryable<Customer> liste = db.Customers;
-            if (Lastname != null)
-                liste = liste.Where(x => x.DepartureDate == returnDate);
-            if (returnDate != null)
-                liste = liste.Where(x => x.ReturnDate == returnDate);
-            if (placeNumber != null)
-                liste = liste.Where(x => x.PlaceNumber == placeNumber);
-            if (price != null)
-                liste = liste.Where(x => x.Price == price);
-            if (destinationId != null)
-                liste = liste.Where(x => x.DestinationID == destinationId);
-            if (agencyId != null)
-                liste = liste.Where(x => x.AgencyID == agencyId);
+            if (!string.IsNullOrWhiteSpace(Lastname))
+                liste = liste.Where(x => x.Lastname.Contains(Lastname));
+            if (!string.IsNullOrWhiteSpace(Firstname))
+                liste = liste.Where(x => x.Firstname.Contains(Firstname));
+            if (!string.IsNullOrWhiteSpace(Address))
+                liste = liste.Where(x => x.Address.Contains(Address));
+            if (!string.IsNullOrWhiteSpace(Phone))
+                liste = liste.Where(x => x.Phone.Contains(Phone));
+            if (!string.IsNullOrWhiteSpace(Mail))
+                liste = liste.Where(x => x.Mail.Contains(Mail));
+            if (BirthDate != null)
+                liste = liste.Where(x => x.BirthDate == BirthDate);
 
-            return liste;
+            return View("Index",liste);
         }
 
         // GET: BackOffice/CustomersBO/Delete/5
