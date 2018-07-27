@@ -13,7 +13,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
     public class ReservationsController : BaseBoController
     {
-        private JjanDbContext db = new JjanDbContext();
+        
 
         // GET: BackOffice/Reservations
         public ActionResult Index()
@@ -152,13 +152,5 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             return RedirectToAction("Edit", new { id = person.ReservationID });
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }
