@@ -12,7 +12,7 @@ using BoVoyageJJAN.Models;
 
 namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
-    public class TripsController : Controller
+    public class TripsController : BaseBoController
     {
         private JjanDbContext db = new JjanDbContext();
 
@@ -21,7 +21,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
          {
              IEnumerable<Trip> liste = db.Trips.Include(t => t.Agency).Include(t => t.Destination);
              if (model.Destination!=null)
-                 liste = db.Trips.Where( x => x.Destination.Country.Contains(model.Destination.Country));
+                 liste = db.Trips.Include(t => t.Agency).Include(t => t.Destination).Where( x => x.Destination.Country.Contains(model.Destination));
              if (model.MaxPrice != null)
                  liste = db.Trips.Where(x => x.Price <= model.MaxPrice);
              if (model.MinPrice != null)
@@ -57,7 +57,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
          public ActionResult Create()
          {
              ViewBag.AgencyID = new SelectList(db.Agencies, "ID", "Name");
-             ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Continent");
+             ViewBag.DestinationID = new SelectList(db.Destinations, "ID", "Country");
              return View();
          }
 
