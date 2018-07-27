@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BoVoyageJJAN.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,14 @@ namespace BoVoyageJJAN.Controllers
     public class SharedController : BaseController
     {
         // GET: Shared
+
+        public ActionResult Index(TopFiveViewModel model)
+        {
+
+
+            return View(model);
+        }
+
         public ActionResult TopFiveCheap()
         {
             var cheap = db.Trips.OrderBy(x => x.Price).Take(5);
