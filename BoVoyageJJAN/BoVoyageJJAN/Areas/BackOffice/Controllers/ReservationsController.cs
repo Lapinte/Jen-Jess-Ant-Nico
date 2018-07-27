@@ -13,7 +13,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
     public class ReservationsController : BaseBoController
     {
-        private JjanDbContext db = new JjanDbContext();
+        
 
         // GET: BackOffice/Reservations
         public ActionResult Index()
@@ -125,16 +125,16 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             return RedirectToAction("Index");
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult AddParticipant(int resevationID, Participant participant)
+        public ActionResult AddParticipant(Participant participant)
         {
-            if (participant != null)
+            if (ModelState.IsValid)
             {
                 var person = new Participant();
-
-                db.Participants.Add(person);
+                db.Entry(person).State = EntityState.Modified;
                 db.SaveChanges();
-
+                
                 return RedirectToAction("Edit", new { id = person.ReservationID });
             }
             else
@@ -152,13 +152,5 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             return RedirectToAction("Edit", new { id = person.ReservationID });
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }

@@ -12,9 +12,12 @@ namespace BoVoyageJJAN.Controllers
     public class HomeController : BaseController
     {
         // GET: Home
-        public ActionResult Index()
+        public ActionResult Index(TopFiveViewModel model)
         {
-            return View();
+            var listecheap = db.Trips.OrderBy(x => x.Price).Take(5);
+
+
+            return View(model);
         }
 
         public ActionResult About()

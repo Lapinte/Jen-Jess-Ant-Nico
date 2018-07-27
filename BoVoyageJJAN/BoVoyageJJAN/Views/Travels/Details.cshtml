@@ -1,67 +1,73 @@
 ﻿@model BoVoyageJJAN.Models.Trip
 
 @{
-    ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<!DOCTYPE html>
 
-<div>
-    <h4>Trip</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Agency.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Agency.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Destination.Continent)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Destination.Continent)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DepartureDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DepartureDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ReturnDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ReturnDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PlaceNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PlaceNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Trip</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Agency.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Agency.Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Destination.Country)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Destination.Country)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DepartureDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DepartureDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ReturnDate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ReturnDate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PlaceNumber)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PlaceNumber)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Retour à la liste", "Index")
+    </p>
+</body>
+</html>

@@ -143,6 +143,7 @@
     <Content Include="Areas\BackOffice\Views\Customers\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\Customers\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Customers\Index.cshtml" />
+    <Content Include="Areas\BackOffice\Views\Shared\_AddParticipant.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -350,6 +351,7 @@
       <DependentUpon>201807262051026_ModifCustomerParticipant.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\TopFiveViewModel.cs" />
     <Compile Include="Models\Trip.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\Agency.cs" />
@@ -361,6 +363,7 @@
     <Compile Include="Models\Participant.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\DestinationFile.cs" />
+    <Compile Include="Models\TravelSearchViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\Validator\DateGreaterThanAttribute.cs" />
@@ -406,11 +409,8 @@
     <Content Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Shared\_LayoutForm.cshtml" />
-    <Content Include="Views\Trips\Create.cshtml" />
-    <Content Include="Views\Trips\Delete.cshtml" />
-    <Content Include="Views\Trips\Details.cshtml" />
-    <Content Include="Views\Trips\Edit.cshtml" />
-    <Content Include="Views\Trips\Index.cshtml" />
+    <Content Include="Views\Travels\Details.cshtml" />
+    <Content Include="Views\Travels\Index.cshtml" />
     <Content Include="Views\Shared\_TopFiveCheap.cshtml" />
     <Content Include="Views\Shared\_TopFiveRush.cshtml" />
     <Content Include="Views\Shared\_TopFiveCountry.cshtml" />
@@ -424,7 +424,6 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-mobile.woff" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Bookings\Create.cshtml" />
-    <Content Include="Views\Bookings\Details.cshtml" />
     <Content Include="Views\Bookings\Edit.cshtml" />
     <Content Include="Views\Bookings\Index.cshtml" />
     <None Include="Web.Debug.config">

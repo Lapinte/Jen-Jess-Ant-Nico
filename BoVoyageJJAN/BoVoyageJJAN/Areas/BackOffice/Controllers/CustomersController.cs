@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using BoVoyageJJAN.Areas.BackOffice.Models;
@@ -13,12 +14,10 @@ using BoVoyageJJAN.Utils;
 
 namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
-    public class CustomersController : Controller
+    public class CustomersController : BaseBoController
     {
-        private JjanDbContext db = new JjanDbContext();
-
         // GET: BackOffice/Customers
-        
+
         public ActionResult Index(CustomerSearchViewModel model)
         {
 
@@ -45,7 +44,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = db.Customers.Include(x=>x.Civility).SingleOrDefault(x=>x.ID == id);
+            Customer customer = db.Customers.Include(x => x.Civility).SingleOrDefault(x => x.ID == id);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -53,14 +52,14 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             return View(customer);
         }
 
-        // GET: BackOffice/CustomersBO/Create
+        // GET: BackOffice/Customers/Create
         public ActionResult Create()
         {
             ViewBag.CivilityID = new SelectList(db.Civilities, "ID", "Label");
             return View();
         }
 
-        // POST: BackOffice/CustomersBO/Create
+        // POST: BackOffice/Customers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -81,7 +80,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             return View(customer);
         }
 
-        // GET: BackOffice/CustomersBO/Edit/5
+        // GET: BackOffice/Customers/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -97,7 +96,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             return View(customer);
         }
 
-        // POST: BackOffice/CustomersBO/Edit/5
+        // POST: BackOffice/Customers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -119,7 +118,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             return View();
         }
 
-        // GET: BackOffice/CustomersBO/Delete/5
+        // GET: BackOffice/Customers/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -134,7 +133,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             return View(customer);
         }
 
-        // POST: BackOffice/CustomersBO/Delete/5
+        // POST: BackOffice/Customers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -145,13 +144,34 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+        public void DownloadCsv()
         {
-            if (disposing)
+            IEnumerable<Customer> customersList = db.Customers.Include(c => c.Civility);
+            string CustomersCsv = GetCsvString(customersList);
+
+            // Return the file content with response body. 
+            Response.ContentType = "text/csv";
+            Response.AddHeader("Content-Disposition", "attachment;filename=Customers.csv");
+            Response.Write(CustomersCsv);
+            Response.End();
+        }
+
+        private string GetCsvString(IEnumerable<Customer> customersList)
+        {
+            StringBuilder csv = new StringBuilder();
+
+            csv.AppendLine("FirstName;LastName;Email");
+
+            foreach (Customer customer in customersList)
             {
-                db.Dispose();
+                csv.Append(customer.Firstname + ";");
+                csv.Append(customer.Lastname + ";");
+                csv.Append(customer.Mail + ";");
+
+                csv.AppendLine();
             }
-            base.Dispose(disposing);
+
+            return csv.ToString();
         }
     }
 }

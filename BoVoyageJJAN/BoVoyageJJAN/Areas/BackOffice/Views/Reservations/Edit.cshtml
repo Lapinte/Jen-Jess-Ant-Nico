@@ -97,11 +97,12 @@
 <hr />
 
 
-<form id="addParticipant" action="#" method="POST">
-    @Html.HiddenFor(x => x.ID)
-    <div class="form-group">
-        <label>Participant</label>
-    </div>
+<form action="@Url.Action("AddParticipant")" method="POST">
+    @Html.AntiForgeryToken()
+    @Html.Hidden("ReservationID", Model.ID)
+    
+    @Html.Partial("_AddParticipant", new BoVoyageJJAN.Models.Participant())
+
     <button type="submit" class="btn btn-warning"> Ajouter </button>
 </form>
 

@@ -14,8 +14,6 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
     public class TripsController : BaseBoController
     {
-        private JjanDbContext db = new JjanDbContext();
-
         // GET: BackOffice/Trips
          public ActionResult Index(TripSearchViewModel model)
          {
@@ -139,15 +137,6 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
              db.Trips.Remove(trip);
              db.SaveChanges();
              return RedirectToAction("Index");
-         }
-
-         protected override void Dispose(bool disposing)
-         {
-             if (disposing)
-             {
-                 db.Dispose();
-             }
-             base.Dispose(disposing);
          }
      }
  }

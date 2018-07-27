@@ -17,7 +17,7 @@ namespace BoVoyageJJAN.Controllers
         // GET: Bookings
         public ActionResult Index(int? id)
         {
-            var reservations = db.Reservations.Include(r => r.Customer).Where(x => x.CustomerID == id);
+            var reservations = db.Reservations.Include(r => r.Customer).Include(r => r.Trip);
             return View(reservations.ToList());
         }
 
@@ -56,7 +56,7 @@ namespace BoVoyageJJAN.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation =db.Reservations.Include(x => x.Participants).SingleOrDefault(x => x.ID == id);
+            Reservation reservation = db.Reservations.Find(id);
             if (reservation == null)
             {
                 return HttpNotFound();
@@ -100,18 +100,19 @@ namespace BoVoyageJJAN.Controllers
 
 
         [HttpPost]
-        public ActionResult AddParticipant(int? id, Participant participant)
+        public ActionResult AddParticipant( Participant participant)
         {
-            if (id == null)
+            if (participant == null)
             {
                 TempData["Message"] = "Aucun participant";
-                return RedirectToAction("Edit", new { id });
+                return RedirectToAction("Edit");
             }
 
-            if (participant != null)
+            if (ModelState.IsValid)
             {
                 var person = new Participant();
 
+                db.Entry(person).State = EntityState.Modified;
                 db.Participants.Add(person);
                 db.SaveChanges();
                 TempData["Message"] = "participant ajouté";
