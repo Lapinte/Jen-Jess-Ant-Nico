@@ -11,7 +11,7 @@ using BoVoyageJJAN.Models;
 
 namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
-    public class ReservationsController : Controller
+    public class ReservationsController : BaseBoController
     {
         private JjanDbContext db = new JjanDbContext();
 

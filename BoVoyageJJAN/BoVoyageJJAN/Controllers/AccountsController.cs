@@ -15,27 +15,13 @@ namespace BoVoyageJJAN.Controllers
 {
     public class AccountsController : BaseController
     {
-        // GET: Accounts
-        public ActionResult Index()
+        // GET: Accounts/Details
+        /*[AuthenticationUserFilter]
+        public ActionResult Details()
         {
-            var customers = db.Customers.Include(c => c.Civility);
-            return View(customers.ToList());
-        }
-
-        // GET: Accounts/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Customer customer = db.Customers.Include(c => c.Civility).SingleOrDefault(x => x.ID == id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
+            Customer customer = db.Customers.Include(c => c.Civility).SingleOrDefault(x => x. == model.Login);
             return View(customer);
-        }
+        }*/
 
         // GET: Accounts/Create
         public ActionResult Create()
@@ -58,7 +44,7 @@ namespace BoVoyageJJAN.Controllers
 
                 db.Customers.Add(customer);
                 db.SaveChanges();
-                DisplayMessage("Votre compte est bien créé !", MessageType.SUCCESS);
+                DisplayMessage("Votre compte est bien créé ! Bienvenue " + customer.Firstname + " !", MessageType.SUCCESS);
                 return RedirectToAction("Index");
             }
 
@@ -89,8 +75,8 @@ namespace BoVoyageJJAN.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Lastname,Firstname,Password,Address,Phone,BirthDate,CivilityID")] Customer customer)
         {
-            
-            var old = db.Customers.SingleOrDefault(x=>x.ID == customer.ID);
+
+            var old = db.Customers.SingleOrDefault(x => x.ID == customer.ID);
             customer.Mail = old.Mail;
             db.Entry(old).State = EntityState.Detached;
 
@@ -106,33 +92,6 @@ namespace BoVoyageJJAN.Controllers
             }
             ViewBag.CivilityID = new SelectList(db.Civilities, "ID", "Label", customer.CivilityID);
             return View(customer);
-        }
-
-        // GET: Accounts/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customer);
-        }
-
-        // POST: Accounts/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Customer customer = db.Customers.Find(id);
-            db.Customers.Remove(customer);
-            db.SaveChanges();
-            DisplayMessage("Votre compte a bien été supprimé", MessageType.SUCCESS);
-            return RedirectToAction("Index");
         }
     }
 }
