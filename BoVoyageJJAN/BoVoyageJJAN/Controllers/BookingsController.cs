@@ -36,6 +36,8 @@ namespace BoVoyageJJAN.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,CreditCardNumber,TotalPrice,Insurance,ParticipantNumber,ParticipantUnderTwelveNumber,CreatedAt,Statut,CustomerID,TripID")] Reservation reservation)
         {
+            
+            reservation.TotalPrice = (reservation.Trip.Price * reservation.ParticipantNumber) + (reservation.Trip.Price * reservation.ParticipantUnderTwelveNumber);
             if (ModelState.IsValid)
             {
                 db.Reservations.Add(reservation);
