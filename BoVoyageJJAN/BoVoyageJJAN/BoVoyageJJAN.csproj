@@ -316,7 +316,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AgenciesController.cs" />
+    <Compile Include="Areas\BackOffice\Controllers\BaseBoController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CustomersController.cs" />
+    <Compile Include="Areas\BackOffice\Models\DashBoardViewModel.cs" />
     <Compile Include="Areas\BackOffice\Models\TripSearchViewModel.cs" />
     <Compile Include="Areas\BackOffice\Models\CustomerSearchViewModel.cs" />
     <Compile Include="Controllers\AuthenticationUserController.cs" />
@@ -399,7 +401,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Accounts\Create.cshtml" />
-    <Content Include="Views\Accounts\Delete.cshtml" />
     <Content Include="Views\Accounts\Details.cshtml" />
     <Content Include="Views\Accounts\Edit.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />

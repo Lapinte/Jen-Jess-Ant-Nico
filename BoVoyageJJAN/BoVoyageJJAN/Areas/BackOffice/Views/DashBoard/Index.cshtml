@@ -1,7 +1,89 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@model BoVoyageJJAN.Areas.BackOffice.Models.DashBoardViewModel
+
+
+<h2>Tableau de bord</h2>
+
+@if (Model.Reservations != null)
+{
+    <h3>Réservations en attente</h3>
+
+    <table class="table">
+        <tr>
+            <th>
+                Client
+            </th>
+            <th>
+                Voyage
+            </th>
+            <th>
+                Statut
+            </th>
+            <th>
+                Prix
+            </th>
+            <th>
+                Carte de crédit
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Reservations)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Customer.Lastname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Trip.Destination.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Statut)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreditCardNumber)
+                </td>
+            </tr>
+        }
+    </table>
 }
 
-<h2>Index</h2>
+@if (Model.Trips != null)
+{
+    <h3>Voyages urgents</h3>
+    <table class="table">
+        <tr>
+            <th>
+                Destination
+            </th>
+            <th>
+                Date Aller
+            </th>
+            <th>
+                Date Retour
+            </th>
+            <th>
+                Nombre de place
+            </th>
+        </tr>
 
+        @foreach (var item in Model.Trips)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Destination.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartureDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReturnDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlaceNumber)
+                </td>
+            </tr>
+        }
+    </table>
+}

@@ -14,7 +14,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Models
         [Display(Name = "Destination")]
         
         [StringLength(50, ErrorMessage = "Destination trop longue")]
-        public Destination Destination { get; set; }
+        public string Destination { get; set; }
 
         [Display(Name = "Prix maximum")]
         public decimal? MaxPrice { get; set; }
