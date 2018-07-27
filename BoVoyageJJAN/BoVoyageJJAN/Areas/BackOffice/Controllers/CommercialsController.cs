@@ -15,7 +15,7 @@ using BoVoyageJJAN.Utils;
 namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
     
-    public class CommercialsController : BaseController
+    public class CommercialsController : BaseBoController
     {
         // GET: BackOffice/Commercials
         public ActionResult Index()
