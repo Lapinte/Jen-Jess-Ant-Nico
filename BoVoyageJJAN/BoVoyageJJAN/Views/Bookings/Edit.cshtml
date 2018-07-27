@@ -101,17 +101,18 @@
 }
 
 
-    <form id="formAddFile" action="@Url.Action("AddParticipant","Bookings")" method="post">
-        @Html.HiddenFor(model => model.ID)
+    <form action="@Url.Action("AddParticipant")" method="POST">
+        @Html.AntiForgeryToken()
+        @Html.Hidden("ReservationID", Model.ID)
 
-            <input type="text" value="" name="participant" class="form-control" />
-            <button type="submit" class="btn btn-warning">Ajouter un participant</button>
-      
+        @Html.Partial("_AddParticipant", new BoVoyageJJAN.Models.Participant())
+
+        <button type="submit" class="btn btn-warning"> Ajouter </button>
     </form>
-    @foreach (var participant in Model.Participants)
-    {
-        <a href="@Url.Action("DeleteParticipant","Bookings", new { id=participant.ID })" class="btn btn-info">Supprimer</a>
-    }
+@foreach (var participant in Model.Participants)
+{
+    <a href="@Url.Action("DeleteParticipant","Bookings", new { id=participant.ID })" class="btn btn-info">Supprimer</a>
+}
 
 
 <div>

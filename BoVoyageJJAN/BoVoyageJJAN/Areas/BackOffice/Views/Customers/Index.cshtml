@@ -64,7 +64,9 @@
 @if (Model.Customers != null)
 {
     <h2>Clients</h2>
-
+    <p>
+        @Html.ActionLink("Télécharger la liste des clients au format CSV", "DownloadCsv")
+    </p>
     <p>
         @Html.ActionLink("Ajouter un client", "Create")
     </p>

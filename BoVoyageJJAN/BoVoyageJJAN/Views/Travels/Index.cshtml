@@ -1,64 +1,115 @@
-﻿@model IEnumerable<BoVoyageJJAN.Models.Trip>
+﻿@model BoVoyageJJAN.Models.TravelSearchViewModel
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+@using (Html.BeginForm())
+{
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+    <div class="form-horizontal">
+        <h4>Rechercher un voyage</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Destination, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Destination, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Destination, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaxPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaxPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaxPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MinPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MinPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MinPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaxDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaxDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaxDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MinDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MinDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MinDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Rechercher" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<h2>Voyages</h2>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Agency.Name)
+            Agence
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Destination.Continent)
+            Destination
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DepartureDate)
+            Date de départ
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ReturnDate)
+            Date de retour
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PlaceNumber)
+            Places diponibles
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            Prix par personne
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Agency.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Destination.Continent)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DepartureDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReturnDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PlaceNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model.Trips)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Agency.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReturnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlaceNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) 
+            </td>
+        </tr>
+    }
 
 </table>

@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using BoVoyageJJAN.Areas.BackOffice.Models;
@@ -141,6 +142,36 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             db.Customers.Remove(customer);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public void DownloadCsv()
+        {
+            IEnumerable<Customer> customersList = db.Customers.Include(c => c.Civility);
+            string CustomersCsv = GetCsvString(customersList);
+
+            // Return the file content with response body. 
+            Response.ContentType = "text/csv";
+            Response.AddHeader("Content-Disposition", "attachment;filename=Customers.csv");
+            Response.Write(CustomersCsv);
+            Response.End();
+        }
+
+        private string GetCsvString(IEnumerable<Customer> customersList)
+        {
+            StringBuilder csv = new StringBuilder();
+
+            csv.AppendLine("FirstName;LastName;Email");
+
+            foreach (Customer customer in customersList)
+            {
+                csv.Append(customer.Firstname + ";");
+                csv.Append(customer.Lastname + ";");
+                csv.Append(customer.Mail + ";");
+
+                csv.AppendLine();
+            }
+
+            return csv.ToString();
         }
     }
 }

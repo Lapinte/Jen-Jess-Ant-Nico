@@ -14,10 +14,22 @@ namespace BoVoyageJJAN.Controllers
     public class TravelsController : BaseController
     {
         // GET: Travels
-        public ActionResult Index()
+        public ActionResult Index(TravelSearchViewModel model)
         {
-            var travels = db.Trips.Include(t => t.Agency).Include(t => t.Destination);
-            return View(travels.ToList());
+            IEnumerable<Trip> liste = db.Trips.Include(t => t.Agency).Include(t => t.Destination);
+            if (model.Destination != null)
+                liste = db.Trips.Include(t => t.Agency).Include(t => t.Destination).Where(x => x.Destination.Country.Contains(model.Destination));
+            if (model.MaxPrice != null)
+                liste = db.Trips.Where(x => x.Price <= model.MaxPrice);
+            if (model.MinPrice != null)
+                liste = db.Trips.Where(x => x.Price >= model.MinPrice);
+            if (model.MaxDate != null)
+                liste = db.Trips.Where(x => x.ReturnDate <= model.MaxDate);
+            if (model.MinDate != null)
+                liste = db.Trips.Where(x => x.DepartureDate >= model.MinDate);
+
+            model.Trips = liste.ToList();
+            return View(model);
         }
 
         // GET: Travels/Details/5
@@ -27,34 +39,13 @@ namespace BoVoyageJJAN.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trip trip = db.Trips.Find(id);
+            Trip trip = db.Trips.Include(x => x.Agency).Include(x => x.Destination).SingleOrDefault(x => x.ID == id);
             if (trip == null)
             {
                 return HttpNotFound();
             }
             return View(trip);
         }
-
-
-        //GET: Travels/Search
-        public IQueryable<Trip> GetSearch(DateTime? departureDate = null, DateTime? returnDate = null, int? placeNumber = null, decimal? price = null, int? destinationId = null, int? agencyId = null)
-        {
-            IQueryable<Trip> liste = db.Trips;
-            if (departureDate != null)
-                liste = liste.Where(x => x.DepartureDate == returnDate);
-            if (returnDate != null)
-                liste = liste.Where(x => x.ReturnDate == returnDate);
-            if (placeNumber != null)
-                liste = liste.Where(x => x.PlaceNumber == placeNumber);
-            if (price != null)
-                liste = liste.Where(x => x.Price == price);
-            if (destinationId != null)
-                liste = liste.Where(x => x.DestinationID == destinationId);
-            if (agencyId != null)
-                liste = liste.Where(x => x.AgencyID == agencyId);
-
-            return liste;
-        }
-      
+              
     }
 }
