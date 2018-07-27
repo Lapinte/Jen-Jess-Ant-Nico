@@ -88,6 +88,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 db.Entry(commercial).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -25,30 +25,21 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="~/">Accueil <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="@Url.Action("Index","Trips")" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Voyages
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="@Url.Action("Index","Trips", new { area = "" })">Liste des voyages</a>
-                            <a class="dropdown-item" href="@Url.Action("Search","Trips", new { area = "" })">Rechercher un voyage</a>
-                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Trips")">Voyages</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Reservations")">Réservation</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="@Url.Action("Index","Customers", new { area = ""})" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Clients
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="@Url.Action("Index", "Customers", new { area ="" })">Liste des clients</a>
-                            <a class="dropdown-item" href="@Url.Action("Search", "Customers")">Rechercher un client</a>
-                            <a class="dropdown-item" href="@Url.Action("Download", "Customers")">Télécharger un fichier client</a>
-                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Customers")">Clients</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Commercials")">Commercials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Destinations")">Destinations</a>
                     </li>
                 </ul>
                 @if(commercial != null)

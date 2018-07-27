@@ -36,6 +36,8 @@ namespace BoVoyageJJAN.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,CreditCardNumber,TotalPrice,Insurance,ParticipantNumber,ParticipantUnderTwelveNumber,CreatedAt,Statut,CustomerID,TripID")] Reservation reservation)
         {
+            
+            reservation.TotalPrice = (reservation.Trip.Price * reservation.ParticipantNumber) + (reservation.Trip.Price * reservation.ParticipantUnderTwelveNumber);
             if (ModelState.IsValid)
             {
                 db.Reservations.Add(reservation);
@@ -71,7 +73,7 @@ namespace BoVoyageJJAN.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,CreditCardNumber,TotalPrice,Insurance,ParticipantNumber,ParticipantUnderTwelveNumber,CreatedAt,Statut,CustomerID,TripID")] Reservation reservation)
+        public ActionResult Edit([Bind(Include = "ID,CreditCardNumber,TotalPrice,Insurance,ParticipantNumber,ParticipantUnderTwelveNumber,Statut,CustomerID,TripID")] Reservation reservation)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +92,7 @@ namespace BoVoyageJJAN.Controllers
             if (ModelState.IsValid)
 
             db.Entry(reservation).State = EntityState.Modified;
-            reservation.Statut = 0;
+            reservation.Statut = 2;
             db.SaveChanges();
             TempData["Message"] = "Réservation annulée";
             return RedirectToAction("Index");
