@@ -1,6 +1,7 @@
 ﻿
 @{
     Layout = null;
+    var user = Session["USER_BO"] as BoVoyageJJAN.Models.Customer;
 }
 
 <!DOCTYPE html>
@@ -60,6 +61,13 @@
                         <a class="nav-link disabled" href="#">Disabled</a>
                     </li>
                 </ul>
+
+                @if (Session["USER_BO"] != null)
+                {
+                    <span class="navbar-text">
+                        Bonjour @user.Firstname<a href="@Url.Action("Logout", "AuthenticationUser")" class="btn btn-warning btn-sm"><i class="fa fa-eject"></i></a>
+                    </span>
+                }
 
             </div>
         </nav>
