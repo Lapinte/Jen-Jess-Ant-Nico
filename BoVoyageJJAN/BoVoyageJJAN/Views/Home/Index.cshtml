@@ -1,2 +1,97 @@
-﻿
+﻿@model BoVoyageJJAN.Models.TopFiveViewModel
+
+
 <h2>Accueil</h2>
+
+@if (Model.TopFiveCheap != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                Destination
+            </th>
+            <th>
+                Prix
+            </th>
+            <th>
+                Date de départ
+            </th>
+            <th>
+                Date de retour
+            </th>
+            <th>
+                Nombre de places disponibles
+            </th>
+        </tr>
+
+        @foreach (var trip in Model.TopFiveCheap)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelTrip => trip.Destination.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelTrip => trip.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelTrip => trip.DepartureDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelTrip => trip.ReturnDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelTrip => trip.PlaceNumber)
+                </td>
+            </tr>
+
+
+        }
+    </table>
+}
+
+@if (Model.TopFiveRush != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                Destination
+            </th>
+            <th>
+                Prix
+            </th>
+            <th>
+                Date de départ
+            </th>
+            <th>
+                Date de retour
+            </th>
+            <th>
+                Nombre de places disponibles
+            </th>
+        </tr>
+
+        @foreach (var trip in Model.TopFiveRush)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelTrip => trip.Destination.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelTrip => trip.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelTrip => trip.DepartureDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelTrip => trip.ReturnDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelTrip => trip.PlaceNumber)
+                </td>
+            </tr>
+
+
+        }
+    </table>
+}
+

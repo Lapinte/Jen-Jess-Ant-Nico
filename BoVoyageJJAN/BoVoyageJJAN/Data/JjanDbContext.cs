@@ -32,5 +32,7 @@ namespace BoVoyageJJAN.Data
 
         public DbSet<DestinationFile> DestinationFiles { get; set; }
 
+        public DbSet<UserDemand> UserDemands { get; set; }
+
     }
 }
