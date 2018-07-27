@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -164,11 +165,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 
             foreach (Customer customer in customersList)
             {
-                csv.Append(customer.Firstname + ";");
-                csv.Append(customer.Lastname + ";");
-                csv.Append(customer.Mail + ";");
-
-                csv.AppendLine();
+                csv.AppendLine($"{customer.Firstname};{customer.Lastname};{customer.Mail}");
             }
 
             return csv.ToString();
