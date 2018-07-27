@@ -14,7 +14,12 @@ namespace BoVoyageJJAN.Controllers
         // GET: Home
         public ActionResult Index(TopFiveViewModel model)
         {
-            var listecheap = db.Trips.OrderBy(x => x.Price).Take(5);
+            IEnumerable<Trip> cheapList = db.Trips.Include(x=>x.Destination).OrderBy(x => x.Price).Take(5);
+            model.TopFiveCheap = cheapList.ToList();
+            IEnumerable<Trip> rushList = db.Trips.Include(x => x.Destination).OrderBy(x => x.DepartureDate).Take(5);
+            model.TopFiveRush = rushList.ToList();
+            //IEnumerable<Trip> tempList = db.Trips.Include(x => x.Destination);
+            //IEnumerable<IGrouping<string, string>> countryList= tempList.GroupBy(x=>x.Destination.Country)
 
 
             return View(model);
