@@ -143,7 +143,7 @@
     <Content Include="Areas\BackOffice\Views\Customers\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\Customers\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Customers\Index.cshtml" />
-    <Content Include="Areas\BackOffice\Views\Shared\_AddParticipant.cshtml" />
+    <Content Include="Views\Shared\_AddParticipant.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -335,6 +335,7 @@
     <Compile Include="Areas\BackOffice\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\BackOffice\Models\AuthenticationViewModels.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\UserDemandsController.cs" />
     <Compile Include="Data\JjanDbContext.cs" />
     <Compile Include="Filter\AuthenticationUserFilter .cs" />
     <Compile Include="Filter\AuthenticationCommercialFilter.cs" />
@@ -348,6 +349,10 @@
     <Compile Include="Migrations\201807262051026_ModifCustomerParticipant.cs" />
     <Compile Include="Migrations\201807262051026_ModifCustomerParticipant.Designer.cs">
       <DependentUpon>201807262051026_ModifCustomerParticipant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807271615020_UserDemand.cs" />
+    <Compile Include="Migrations\201807271615020_UserDemand.Designer.cs">
+      <DependentUpon>201807271615020_UserDemand.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\TopFiveViewModel.cs" />
@@ -363,6 +368,7 @@
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\DestinationFile.cs" />
     <Compile Include="Models\TravelSearchViewModel.cs" />
+    <Compile Include="Models\UserDemand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Utils\Validator\DateGreaterThanAttribute.cs" />
@@ -444,6 +450,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807262051026_ModifCustomerParticipant.resx">
       <DependentUpon>201807262051026_ModifCustomerParticipant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807271615020_UserDemand.resx">
+      <DependentUpon>201807271615020_UserDemand.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

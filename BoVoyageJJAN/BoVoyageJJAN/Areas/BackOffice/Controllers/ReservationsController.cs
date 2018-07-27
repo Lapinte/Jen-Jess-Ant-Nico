@@ -131,11 +131,12 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
-                var person = new Participant();
-                db.Entry(person).State = EntityState.Modified;
+                
+                db.Entry(participant).State = EntityState.Modified;
+                db.Participants.Add(participant);
                 db.SaveChanges();
                 
-                return RedirectToAction("Edit", new { id = person.ReservationID });
+                return RedirectToAction("Edit", new { id = participant.ReservationID });
             }
             else
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
