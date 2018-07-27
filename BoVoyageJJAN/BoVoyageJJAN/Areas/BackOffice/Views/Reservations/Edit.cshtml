@@ -94,6 +94,17 @@
 </div>
 }
 
+<hr />
+
+
+<form id="addParticipant" action="#" method="POST">
+    @Html.HiddenFor(x => x.ID)
+    <div class="form-group">
+        <label>Participant</label>
+    </div>
+    <button type="submit" class="btn btn-warning"> Ajouter </button>
+</form>
+
 <div>
     @Html.ActionLink("Retour à la liste", "Index")
 </div>
