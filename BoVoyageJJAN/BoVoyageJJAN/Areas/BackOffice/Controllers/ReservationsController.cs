@@ -131,6 +131,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 var person = new Participant();
                 db.Entry(person).State = EntityState.Modified;
                 db.SaveChanges();

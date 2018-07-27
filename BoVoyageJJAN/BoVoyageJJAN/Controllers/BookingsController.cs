@@ -110,13 +110,13 @@ namespace BoVoyageJJAN.Controllers
 
             if (ModelState.IsValid)
             {
-                var person = new Participant();
+                
 
-                db.Entry(person).State = EntityState.Modified;
-                db.Participants.Add(person);
+                db.Entry(participant).State = EntityState.Modified;
+                db.Participants.Add(participant);
                 db.SaveChanges();
                 TempData["Message"] = "participant ajouté";
-                return RedirectToAction("Edit", new { id = person.ReservationID });
+                return RedirectToAction("Edit", new { id = participant.ReservationID });
 
             }
             else
