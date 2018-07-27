@@ -330,7 +330,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\CommercialsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DestinationsController.cs" />
-    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="Controllers\TravelsController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AuthenticationCommercialController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\DashBoardController.cs" />
