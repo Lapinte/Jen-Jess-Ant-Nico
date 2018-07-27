@@ -90,7 +90,7 @@ namespace BoVoyageJJAN.Controllers
             if (ModelState.IsValid)
 
             db.Entry(reservation).State = EntityState.Modified;
-            reservation.Statut = 0;
+            reservation.Statut = 2;
             db.SaveChanges();
             TempData["Message"] = "Réservation annulée";
             return RedirectToAction("Index");
