@@ -31,10 +31,10 @@ namespace BoVoyageJJAN.Controllers
                 db.UserDemands.Add(userDemand);
                 db.SaveChanges();
                 DisplayMessage("Votre demande a bien été envoyée " + userDemand.Firstname + ". Elle sera traitée dans les meilleurs délais.", MessageType.SUCCESS);
-                return RedirectToAction("Index");
+                return RedirectToAction("Index, Home");
             }
 
-            return View(userDemand);
+            return View();
         }
     }
 }
