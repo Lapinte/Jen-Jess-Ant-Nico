@@ -408,11 +408,8 @@
     <Content Include="Views\Accounts\Index.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Shared\_LayoutForm.cshtml" />
-    <Content Include="Views\Trips\Create.cshtml" />
-    <Content Include="Views\Trips\Delete.cshtml" />
-    <Content Include="Views\Trips\Details.cshtml" />
-    <Content Include="Views\Trips\Edit.cshtml" />
-    <Content Include="Views\Trips\Index.cshtml" />
+    <Content Include="Views\Travels\Details.cshtml" />
+    <Content Include="Views\Travels\Index.cshtml" />
     <Content Include="Views\Shared\_TopFiveCheap.cshtml" />
     <Content Include="Views\Shared\_TopFiveRush.cshtml" />
     <Content Include="Views\Shared\_TopFiveCountry.cshtml" />
@@ -426,7 +423,6 @@
     <Content Include="Scripts\tinymce\skins\lightgray\fonts\tinymce-mobile.woff" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
     <Content Include="Views\Bookings\Create.cshtml" />
-    <Content Include="Views\Bookings\Details.cshtml" />
     <Content Include="Views\Bookings\Edit.cshtml" />
     <Content Include="Views\Bookings\Index.cshtml" />
     <None Include="Web.Debug.config">
