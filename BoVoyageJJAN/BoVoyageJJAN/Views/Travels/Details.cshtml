@@ -1,7 +1,7 @@
 ﻿@model BoVoyageJJAN.Models.Trip
 
 @{
-    Layout = null;
+    Layout = "/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -25,11 +25,11 @@
             </dd>
     
             <dt>
-                @Html.DisplayNameFor(model => model.Destination.Continent)
+                @Html.DisplayNameFor(model => model.Destination.Country)
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.Destination.Continent)
+                @Html.DisplayFor(model => model.Destination.Country)
             </dd>
     
             <dt>
@@ -67,7 +67,6 @@
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
         @Html.ActionLink("Retour à la liste", "Index")
     </p>
 </body>

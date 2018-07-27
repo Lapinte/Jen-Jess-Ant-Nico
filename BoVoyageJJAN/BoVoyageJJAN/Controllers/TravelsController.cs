@@ -16,8 +16,20 @@ namespace BoVoyageJJAN.Controllers
         // GET: Travels
         public ActionResult Index(TravelSearchViewModel model)
         {
-            var travels = db.Trips.Include(t => t.Agency).Include(t => t.Destination);
-            return View(travels.ToList());
+            IEnumerable<Trip> liste = db.Trips.Include(t => t.Agency).Include(t => t.Destination);
+            if (model.Destination != null)
+                liste = db.Trips.Include(t => t.Agency).Include(t => t.Destination).Where(x => x.Destination.Country.Contains(model.Destination));
+            if (model.MaxPrice != null)
+                liste = db.Trips.Where(x => x.Price <= model.MaxPrice);
+            if (model.MinPrice != null)
+                liste = db.Trips.Where(x => x.Price >= model.MinPrice);
+            if (model.MaxDate != null)
+                liste = db.Trips.Where(x => x.ReturnDate <= model.MaxDate);
+            if (model.MinDate != null)
+                liste = db.Trips.Where(x => x.DepartureDate >= model.MinDate);
+
+            model.Trips = liste.ToList();
+            return View(model);
         }
 
         // GET: Travels/Details/5
@@ -27,7 +39,7 @@ namespace BoVoyageJJAN.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Trip trip = db.Trips.Find(id);
+            Trip trip = db.Trips.Include(x => x.Agency).Include(x => x.Destination).SingleOrDefault(x => x.ID == id);
             if (trip == null)
             {
                 return HttpNotFound();
