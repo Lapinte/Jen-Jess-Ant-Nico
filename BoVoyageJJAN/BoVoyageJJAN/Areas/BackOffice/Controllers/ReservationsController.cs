@@ -125,16 +125,16 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             return RedirectToAction("Index");
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult AddParticipant(int resevationID, Participant participant)
+        public ActionResult AddParticipant(Participant participant)
         {
-            if (participant != null)
+            if (ModelState.IsValid)
             {
                 var person = new Participant();
-
-                db.Participants.Add(person);
+                db.Entry(person).State = EntityState.Modified;
                 db.SaveChanges();
-
+                
                 return RedirectToAction("Edit", new { id = person.ReservationID });
             }
             else
