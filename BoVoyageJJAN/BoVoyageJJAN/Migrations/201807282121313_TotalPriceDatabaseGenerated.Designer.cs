@@ -7,13 +7,13 @@ namespace BoVoyageJJAN.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class UserDemand : IMigrationMetadata
+    public sealed partial class TotalPriceDatabaseGenerated : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UserDemand));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(TotalPriceDatabaseGenerated));
         
         string IMigrationMetadata.Id
         {
-            get { return "201807271615020_UserDemand"; }
+            get { return "201807282121313_TotalPriceDatabaseGenerated"; }
         }
         
         string IMigrationMetadata.Source

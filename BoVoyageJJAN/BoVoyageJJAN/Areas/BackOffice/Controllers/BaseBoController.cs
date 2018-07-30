@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 {
-    //[AuthenticationCommercialFilter]
+    [AuthenticationCommercialFilter]
     public class BaseBoController : BaseController
     {
     }

@@ -7,25 +7,27 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BoVoyageJJAN.Data;
+using BoVoyageJJAN.Filter;
 using BoVoyageJJAN.Models;
 
 namespace BoVoyageJJAN.Controllers
 {
+    [AuthenticationUserFilter]
     public class BookingsController : BaseController
     {
 
         // GET: Bookings
-        public ActionResult Index(int? id)
+        public ActionResult Index()
         {
             var reservations = db.Reservations.Include(r => r.Customer).Include(r => r.Trip);
             return View(reservations.ToList());
         }
 
-        // GET: Bookings/Create
-        public ActionResult Create()
+        // GET: Bookings/Create/1
+        public ActionResult Create(int customerID, int tripID)
         {
-            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "Mail");
-            ViewBag.TripID = new SelectList(db.Trips, "ID", "ID");
+            TempData["CustomerID"] = customerID;
+            TempData["TripID"] = tripID;
             return View();
         }
 
@@ -34,12 +36,14 @@ namespace BoVoyageJJAN.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,CreditCardNumber,TotalPrice,Insurance,ParticipantNumber,ParticipantUnderTwelveNumber,CreatedAt,Statut,CustomerID,TripID")] Reservation reservation)
+        public ActionResult Create([Bind(Include = "ID,CreditCardNumber,TotalPrice,Insurance,ParticipantNumber,ParticipantUnderTwelveNumber,Statut,CustomerID,TripID")] Reservation reservation)
         {
             
-            reservation.TotalPrice = (reservation.Trip.Price * reservation.ParticipantNumber) + (reservation.Trip.Price * reservation.ParticipantUnderTwelveNumber);
+            
             if (ModelState.IsValid)
             {
+                Trip currentTrip = db.Trips.Find(reservation.TripID);
+                reservation.TotalPrice = (currentTrip.Price * (reservation.ParticipantNumber - reservation.ParticipantUnderTwelveNumber)) + (currentTrip.Price * (decimal)0.6 * reservation.ParticipantUnderTwelveNumber);
                 db.Reservations.Add(reservation);
                 db.SaveChanges();
                 return RedirectToAction("Index");

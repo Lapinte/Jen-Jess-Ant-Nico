@@ -1,97 +1,234 @@
 ﻿@model BoVoyageJJAN.Models.TopFiveViewModel
 
+@{ 
+    var user = Session["USER"] as BoVoyageJJAN.Models.Customer;
+}
+
 
 <h2>Accueil</h2>
 
-@if (Model.TopFiveCheap != null)
-{
-    <table class="table">
-        <tr>
-            <th>
-                Destination
-            </th>
-            <th>
-                Prix
-            </th>
-            <th>
-                Date de départ
-            </th>
-            <th>
-                Date de retour
-            </th>
-            <th>
-                Nombre de places disponibles
-            </th>
-        </tr>
+<div class="container">
+    <div class="row">
 
-        @foreach (var trip in Model.TopFiveCheap)
+        @if (Model.TopFiveCheap != null)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.Destination.Country)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.DepartureDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.ReturnDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.PlaceNumber)
-                </td>
-            </tr>
+                <div id="cadre1" class="col-sm-4 col-md-offset-1 border-dark">
+                    <img class="img-thumbnail" src="~/Img/543451_519275181488512_982308053_n.jpg" />
+                    <br />
+                    <p id="p1">
+                        Meulleurs offres
+                        <br />
+                        <br />
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                            Cliquez-ici
+                        </button>
+                    </p>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Meilleurs prix</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>
+                                                    Destination
+                                                </th>
+                                                <th>
+                                                    Prix
+                                                </th>
+                                                <th>
+                                                    Date de départ
+                                                </th>
+                                                <th>
+                                                    Date de retour
+                                                </th>
+                                                <th>
+                                                    Places disponibles
+                                                </th>
+                                                <th>
 
+                                                </th>
+                                            </tr>
+                                        </thead>
 
+                                        @foreach (var trip in Model.TopFiveCheap)
+                                        {
+                                            <tbody>
+                                                <tr>
+                                                    
+                                                    <td>
+                                                        @Html.DisplayFor(modelTrip => trip.Destination.Country)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelTrip => trip.Price)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelTrip => trip.DepartureDate)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelTrip => trip.ReturnDate)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelTrip => trip.PlaceNumber)
+                                                    </td>
+                                                    <td>
+                                                        <a href="@Url.Action("Create","Bookings",  new { customerID = user.ID, tripID = trip.ID },null)" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Réserver"><i class="fa fa-calendar-check-o"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        }
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         }
-    </table>
-}
 
-@if (Model.TopFiveRush != null)
-{
-    <table class="table">
-        <tr>
-            <th>
-                Destination
-            </th>
-            <th>
-                Prix
-            </th>
-            <th>
-                Date de départ
-            </th>
-            <th>
-                Date de retour
-            </th>
-            <th>
-                Nombre de places disponibles
-            </th>
-        </tr>
-
-        @foreach (var trip in Model.TopFiveRush)
+        @if (Model.TopFiveRush != null)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.Destination.Country)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.DepartureDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.ReturnDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.PlaceNumber)
-                </td>
-            </tr>
+                <div class="col-sm-4 col-md-offset-1 border-dark">
+                    <img class="img-thumbnail" src="~/Img/6435_539813142768049_1180416354_n.jpg" />
+                    <br />
+                    <p id="p2">
+                        Départs proches
+                        <br />
+                        <br />
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2">
+                            Cliquez-ici
+                        </button>
+                    </p>
+                    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel2">Départ proches</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>
+                                                    Destination
+                                                </th>
+                                                <th>
+                                                    Prix
+                                                </th>
+                                                <th>
+                                                    Date de départ
+                                                </th>
+                                                <th>
+                                                    Date de retour
+                                                </th>
+                                                <th>
+                                                    Nombre de places disponibles
+                                                </th>
+                                                <th>
 
+                                                </th>
+                                            </tr>
+                                        </thead>
 
-        }
-    </table>
-}
+                                        @foreach (var trip in Model.TopFiveRush)
+                                        {
+                                            <tbody>
+                                                <tr>
+                                                    
+                                                    <td>
+                                                        @Html.DisplayFor(modelTrip => trip.Destination.Country)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelTrip => trip.Price)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelTrip => trip.DepartureDate)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelTrip => trip.ReturnDate)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelTrip => trip.PlaceNumber)
+                                                    </td>
+                                                    <td>
+                                                        <a href="@Url.Action("Create","Bookings", new { customerID = user.ID, tripID = trip.ID },null)" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Réserver"><i class="fa fa-calendar-check-o"></i></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+
+                                        }
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        }   
+            <div class="col-md-4 col-md-offset-1 border-dark">
+
+                <img class="img-thumbnail" src="~/Img/Suisse.jpg" />
+                <br />
+                <p id="p3">
+                    Destinations fréquentes
+                    <br />
+                    <br />
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3">
+                        Cliquez-ici
+                    </button>
+                </p>
+                <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel3">Destination fréquentes</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>
+                                                Destination
+                                            </th>
+                                            <th>
+                                                Prix
+                                            </th>
+                                            <th>
+                                                Date de départ
+                                            </th>
+                                            <th>
+                                                Date de retour
+                                            </th>
+                                            <th>
+                                                Nombre de places disponibles
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
 

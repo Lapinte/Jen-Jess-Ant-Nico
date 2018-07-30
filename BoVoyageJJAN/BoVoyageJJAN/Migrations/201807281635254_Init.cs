@@ -3,7 +3,7 @@ namespace BoVoyageJJAN.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class BaseLocal : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
@@ -44,15 +44,15 @@ namespace BoVoyageJJAN.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         Mail = c.String(nullable: false, maxLength: 255),
                         Password = c.String(nullable: false),
+                        BirthDate = c.DateTime(nullable: false),
                         Lastname = c.String(nullable: false, maxLength: 50),
                         Firstname = c.String(nullable: false),
                         Address = c.String(nullable: false, maxLength: 255),
                         Phone = c.String(nullable: false),
-                        BirthDate = c.DateTime(nullable: false),
                         CivilityID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Civilities", t => t.CivilityID, cascadeDelete: true)
+                .ForeignKey("dbo.Civilities", t => t.CivilityID, cascadeDelete: false)
                 .Index(t => t.CivilityID);
             
             CreateTable(
@@ -87,11 +87,11 @@ namespace BoVoyageJJAN.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         ReservationID = c.Int(nullable: false),
+                        BirthDate = c.DateTime(nullable: false),
                         Lastname = c.String(nullable: false, maxLength: 50),
                         Firstname = c.String(nullable: false),
                         Address = c.String(nullable: false, maxLength: 255),
                         Phone = c.String(nullable: false),
-                        BirthDate = c.DateTime(nullable: false),
                         CivilityID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -139,6 +139,18 @@ namespace BoVoyageJJAN.Migrations
                 .Index(t => t.DestinationID)
                 .Index(t => t.AgencyID);
             
+            CreateTable(
+                "dbo.UserDemands",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Lastname = c.String(nullable: false, maxLength: 50),
+                        Firstname = c.String(nullable: false),
+                        Mail = c.String(nullable: false, maxLength: 255),
+                        Demand = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
+            
         }
         
         public override void Down()
@@ -159,6 +171,7 @@ namespace BoVoyageJJAN.Migrations
             DropIndex("dbo.Participants", new[] { "ReservationID" });
             DropIndex("dbo.DestinationFiles", new[] { "DestinationID" });
             DropIndex("dbo.Customers", new[] { "CivilityID" });
+            DropTable("dbo.UserDemands");
             DropTable("dbo.Trips");
             DropTable("dbo.Reservations");
             DropTable("dbo.Participants");
