@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Customer.Mail)
+            @Html.DisplayNameFor(model => model.Customer.Lastname)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Trip.ID)
+            @Html.DisplayNameFor(model => model.Trip.Destination)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CreditCardNumber)
@@ -41,44 +41,59 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Customer.Mail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Trip.ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreditCardNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Insurance)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ParticipantNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ParticipantUnderTwelveNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Statut)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-            @*<a href="@Url.Action("Edit", new { id=item.ID})"><i class="fa fa-edit text-warning"></i></a>
-            <a href="@Url.Action("Details", new { id=item.ID})"><i class="fa fa-search"></i></a>
-            <a href="@Url.Action("Delete", new { id=item.ID})"><i class="fa fa-trash"></i></a>*@
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trip.Destination.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreditCardNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Insurance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParticipantNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParticipantUnderTwelveNumber)
+            </td>
+            <td>
+                @switch (item.Statut)
+                {
+                    case 0:
+                        <span>En attente</span>
+                        break;
+                    case 1:
+                        <span>En Cours</span>
+                        break;
+                    case 2:
+                        <span>Refusée</span>
+                        break;
+                    case 3:
+                        <span>Acceptée</span>
+                        break;
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                @*<a href="@Url.Action("Edit", new { id=item.ID})"><i class="fa fa-edit text-warning"></i></a>
+                    <a href="@Url.Action("Details", new { id=item.ID})"><i class="fa fa-search"></i></a>
+                    <a href="@Url.Action("Delete", new { id=item.ID})"><i class="fa fa-trash"></i></a>*@
+            </td>
+        </tr>
+    }
 
 </table>

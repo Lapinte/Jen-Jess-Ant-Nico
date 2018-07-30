@@ -19,7 +19,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         public ActionResult Index(DashBoardViewModel model)
         {
             DateTime fifteenDaysFromNow = DateTime.Now.AddDays(-15);
-            IEnumerable<Reservation> listeReservationEnAttente = db.Reservations.Include(x => x.Trip).Include(x => x.Customer).Where(x=>x.Statut == 0);
+            IEnumerable<Reservation> listeReservationEnAttente = db.Reservations.Include(x => x.Trip.Destination).Include(x => x.Customer).Where(x=>x.Statut == 0);
             IEnumerable<Trip> listeVoyagesUrgents = db.Trips.Include(t => t.Agency).Include(t => t.Destination).Where(x => x.DepartureDate >= fifteenDaysFromNow);
 
             model.Reservations = listeReservationEnAttente.ToList();

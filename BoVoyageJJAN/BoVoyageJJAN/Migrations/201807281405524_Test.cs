@@ -3,7 +3,7 @@ namespace BoVoyageJJAN.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class UserDemand : DbMigration
+    public partial class Test : DbMigration
     {
         public override void Up()
         {

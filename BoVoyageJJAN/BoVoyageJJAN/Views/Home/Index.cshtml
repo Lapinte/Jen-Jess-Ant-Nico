@@ -1,7 +1,13 @@
 ﻿@model BoVoyageJJAN.Models.TopFiveViewModel
 
+@{ 
+    var user = Session["USER"] as BoVoyageJJAN.Models.Customer;
+}
+
 
 <h2>Accueil</h2>
+
+<h3>Top 5 des voyages les moins chers</h3>
 
 @if (Model.TopFiveCheap != null)
 {
@@ -22,32 +28,44 @@
             <th>
                 Nombre de places disponibles
             </th>
+            <th>
+
+            </th>
         </tr>
 
         @foreach (var trip in Model.TopFiveCheap)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.Destination.Country)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.DepartureDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.ReturnDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.PlaceNumber)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelTrip => trip.Destination.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelTrip => trip.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelTrip => trip.DepartureDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelTrip => trip.ReturnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelTrip => trip.PlaceNumber)
+            </td>
+            @if (user != null)
+            {
+            <td>
+                @Html.ActionLink("Réserver", "Create", "Bookings", new { customerID = user.ID, tripID = trip.ID },null)
+            </td>
+            }
+            
+        </tr>
 
 
         }
     </table>
 }
+
+    <h3>Top 5 des voyages des voyages urgent</h3>
 
 @if (Model.TopFiveRush != null)
 {
@@ -68,27 +86,32 @@
             <th>
                 Nombre de places disponibles
             </th>
+            <th>
+            </th>
         </tr>
 
         @foreach (var trip in Model.TopFiveRush)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.Destination.Country)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.DepartureDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.ReturnDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelTrip => trip.PlaceNumber)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelTrip => trip.Destination.Country)
+            </td>
+            <td>
+                @Html.DisplayFor(modelTrip => trip.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelTrip => trip.DepartureDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelTrip => trip.ReturnDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelTrip => trip.PlaceNumber)
+            </td>
+            <td>
+                <a class="nav-link" href="@Url.Action("Create","Bookings")">Réserver</a>
+            </td>
+        </tr>
 
 
         }

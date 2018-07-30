@@ -18,7 +18,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         // GET: BackOffice/Reservations
         public ActionResult Index()
         {
-            var reservations = db.Reservations.Include(r => r.Customer).Include(r => r.Trip);
+            var reservations = db.Reservations.Include(x=>x.Trip.Destination).Include(x=>x.Customer);
             return View(reservations.ToList());
         }
 

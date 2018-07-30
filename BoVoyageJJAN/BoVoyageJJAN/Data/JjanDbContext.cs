@@ -9,7 +9,7 @@ namespace BoVoyageJJAN.Data
 {
     public class JjanDbContext : DbContext
     {
-        public JjanDbContext() : base("jjan")
+        public JjanDbContext() : base("jjantest")
         {
             
         }

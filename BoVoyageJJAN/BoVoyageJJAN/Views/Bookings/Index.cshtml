@@ -6,19 +6,13 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Customer.Mail)
+            @Html.DisplayNameFor(model => model.Customer.Lastname)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Trip.ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreditCardNumber)
+            @Html.DisplayNameFor(model => model.Trip.Destination)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.TotalPrice)
@@ -44,13 +38,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Customer.Mail)
+            @Html.DisplayFor(modelItem => item.Customer.Lastname)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Trip.ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreditCardNumber)
+            @Html.DisplayFor(modelItem => item.Trip.Destination.Country)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TotalPrice)
@@ -71,9 +62,9 @@
             @Html.DisplayFor(modelItem => item.Statut)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Ajouter un participant", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) 
+            
         </td>
     </tr>
 }
