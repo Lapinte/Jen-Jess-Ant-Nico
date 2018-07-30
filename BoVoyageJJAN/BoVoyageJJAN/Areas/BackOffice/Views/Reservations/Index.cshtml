@@ -6,9 +6,6 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -86,12 +83,11 @@
                 @Html.DisplayFor(modelItem => item.CreatedAt)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                @*<a href="@Url.Action("Edit", new { id=item.ID})"><i class="fa fa-edit text-warning"></i></a>
-                    <a href="@Url.Action("Details", new { id=item.ID})"><i class="fa fa-search"></i></a>
-                    <a href="@Url.Action("Delete", new { id=item.ID})"><i class="fa fa-trash"></i></a>*@
+                <div class="btn-group">
+                    @Html.ActionLink(" ", "Details", new { id = item.ID }, new { @class = "btn btn-secondary fa fa-info", @title = "Détails" })
+                    @Html.ActionLink(" ", "Confirm", new { id = item.ID }, new { @class = "btn btn-secondary fa fa-check-square", @title = "Confirmer" })
+                    @Html.ActionLink(" ", "Delete", new { id = item.ID }, new { @class = "btn btn-secondary fa fa-trash", @title = "Annuler" })
+                </div>
             </td>
         </tr>
     }

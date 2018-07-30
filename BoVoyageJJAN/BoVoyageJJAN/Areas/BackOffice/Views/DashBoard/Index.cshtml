@@ -1,7 +1,9 @@
 ﻿@model BoVoyageJJAN.Areas.BackOffice.Models.DashBoardViewModel
 
 
-<h2>Tableau de bord</h2>
+<div class="text-center">
+    <h2>Tableau de bord</h2>
+</div>
 
 @if (Model.Reservations != null)
 {
@@ -24,27 +26,54 @@
             <th>
                 Carte de crédit
             </th>
+            <th class="text-center">Confirmer</th>
+            <th class="text-center">Refuser</th>
         </tr>
 
         @foreach (var item in Model.Reservations)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Customer.Lastname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Trip.Destination.Country)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Statut)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalPrice)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreditCardNumber)
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trip.Destination.Country)
+            </td>
+            <td>
+                @switch (item.Statut)
+                {
+                    case 0:
+                        <span>En attente</span>
+                        break;
+                    case 1:
+                        <span>En cours</span>
+                        break;
+                    case 2:
+                        <span>Refusé</span>
+                        break;
+                    case 3:
+                        <span>Accepté</span>
+                        break;
+
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreditCardNumber)
+            </td>
+            <td class="text-center">
+                <div class="btn-group">
+                    @Html.ActionLink(" ", "Confirm", "Reservations", new { id = item.ID }, new { @class = "btn btn-secondary fa fa-check-square", @title = "Confirmer" })
+                </div>
+            </td>
+            <td class="text-center">
+                <div class="btn-group">
+                    @Html.ActionLink(" ", "Delete", "Reservations", new { id = item.ID }, new { @class = "btn btn-secondary fa fa-trash", @title = "Annuler" })
+                </div>
+            </td>
+        </tr>
         }
     </table>
 }

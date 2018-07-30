@@ -46,7 +46,7 @@ namespace BoVoyageJJAN.Controllers
                 reservation.TotalPrice = (currentTrip.Price * (reservation.ParticipantNumber - reservation.ParticipantUnderTwelveNumber)) + (currentTrip.Price * (decimal)0.6 * reservation.ParticipantUnderTwelveNumber);
                 db.Reservations.Add(reservation);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { customerID = reservation.CustomerID});
             }
 
             ViewBag.CustomerID = new SelectList(db.Customers, "ID", "Mail", reservation.CustomerID);

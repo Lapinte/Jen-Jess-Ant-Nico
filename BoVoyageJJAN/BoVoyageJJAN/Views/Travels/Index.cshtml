@@ -1,7 +1,7 @@
 ﻿@model BoVoyageJJAN.Models.TravelSearchViewModel
 
 @{
-    ViewBag.Title = "Index";
+    var user = Session["USER"] as BoVoyageJJAN.Models.Customer;
 }
 
 @using (Html.BeginForm())
@@ -74,7 +74,7 @@
     <hr />
 
 }
-<button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#searchModal">Rechercher un voyage</button>
+<button type="button" class="btn btn-info float-right" data-toggle="modal" data-target="#searchModal"><i class="fa fa-search text-white">&nbsp;&nbsp;&nbsp;&nbsp;</i>Rechercher un voyage</button>
 <h2>Voyages</h2>
 
 <table class="table">
@@ -98,31 +98,43 @@
             Prix par personne
         </th>
         <th></th>
+        <th>Réserver</th>
     </tr>
 
-    @foreach (var item in Model.Trips)
+    @foreach (var trip in Model.Trips)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Agency.Name)
+                @Html.DisplayFor(modelItem => trip.Agency.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Destination.Country)
+                @Html.DisplayFor(modelItem => trip.Destination.Country)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DepartureDate)
+                @Html.DisplayFor(modelItem => trip.DepartureDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ReturnDate)
+                @Html.DisplayFor(modelItem => trip.ReturnDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PlaceNumber)
+                @Html.DisplayFor(modelItem => trip.PlaceNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                @Html.DisplayFor(modelItem => trip.Price)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id = item.ID })
+                @Html.ActionLink("Détails", "Details", new { id = trip.ID })
+            </td>
+            <td>
+                @if (user != null)
+                {
+                    <a href="@Url.Action("Create","Bookings", new { customerID = user.ID, tripID = trip.ID },null)" class="btn btn-warning" data-toggle="tooltip" data-placement="right" title="Réserver"><i class="fa fa-calendar-check-o"></i></a>
+                }
+                @if (user == null)
+                {
+                    <span>Connectez-vous</span>
+                }
+
             </td>
         </tr>
     }

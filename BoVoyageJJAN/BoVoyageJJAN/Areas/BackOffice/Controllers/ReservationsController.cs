@@ -29,7 +29,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Reservation reservation = db.Reservations.Find(id);
+            Reservation reservation = db.Reservations.Include(x => x.Trip.Destination).Include(x => x.Customer).SingleOrDefault(x=>x.ID == id);
             if (reservation == null)
             {
                 return HttpNotFound();
@@ -120,7 +120,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Reservation reservation = db.Reservations.Find(id);
-            db.Reservations.Remove(reservation);
+            reservation.Statut = 2;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -153,5 +153,13 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
             return RedirectToAction("Edit", new { id = person.ReservationID });
         }
 
+        public ActionResult Confirm(int id)
+        {
+            Reservation reservation = db.Reservations.Find(id);
+            reservation.Statut = 3;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
     }
 }

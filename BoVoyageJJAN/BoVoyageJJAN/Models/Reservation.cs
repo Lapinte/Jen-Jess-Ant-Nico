@@ -10,6 +10,11 @@ namespace BoVoyageJJAN.Models
 {
     public class Reservation : BaseModel
     {
+        public Reservation()
+        {
+            CreatedAt = DateTime.Now;
+        }
+
         [Required(ErrorMessage = "Le champ {0} est requis")]
         [Display(Name = "Carte de crédit")]
         [DataType(DataType.CreditCard)]

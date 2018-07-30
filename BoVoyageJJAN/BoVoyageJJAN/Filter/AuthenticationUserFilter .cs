@@ -12,7 +12,7 @@ namespace BoVoyageJJAN.Filter
         {
             if (filterContext.HttpContext.Session["USER"] == null)
             {
-                filterContext.Result = new RedirectResult("\\BackOffice\\AuthenticationUser\\Login");
+                filterContext.Result = new RedirectResult("\\AuthenticationUser\\Login");
             }
         }
     }

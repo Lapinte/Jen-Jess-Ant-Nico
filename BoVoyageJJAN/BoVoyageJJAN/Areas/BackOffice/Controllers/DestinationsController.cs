@@ -154,11 +154,11 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 
         public ActionResult DeleteFile(int id)
         {
-            DestinationFile roomfile = db.DestinationFiles.Find(id);
-            db.DestinationFiles.Remove(roomfile);
+            DestinationFile file = db.DestinationFiles.Find(id);
+            db.DestinationFiles.Remove(file);
             db.SaveChanges();
             TempData["Message"] = "Fichier supprimé";
-            return RedirectToAction("Edit", new { id = roomfile.DestinationID });
+            return RedirectToAction("Edit", new { id = file.DestinationID });
         }
 
     }

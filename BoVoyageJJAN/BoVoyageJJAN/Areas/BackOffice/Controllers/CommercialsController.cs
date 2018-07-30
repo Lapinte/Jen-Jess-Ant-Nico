@@ -86,10 +86,18 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Lastname,Firstname,Mail,Password")] Commercial commercial)
         {
+            ModelState.Remove("Mail");
+            ModelState.Remove("Password");
+            ModelState.Remove("ConfirmedPassword");
+            var old = db.Commercials.Find(commercial.ID);
+            commercial.Mail = old.Mail;
+            commercial.Password = old.Password;
+            commercial.ConfirmedPassword = old.Password.HashMD5();
+            db.Entry(old).State = EntityState.Detached;
             if (ModelState.IsValid)
             {
-
                 db.Entry(commercial).State = EntityState.Modified;
+                db.Configuration.ValidateOnSaveEnabled = false;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

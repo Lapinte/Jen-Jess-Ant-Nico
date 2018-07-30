@@ -38,13 +38,13 @@
             </dt>
     
             <dd>
-                @Html.DisplayFor(model => model.Description)
+                @Html.Raw(Model.Description)
             </dd>
     
         </dl>
     </div>
     <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Modifier", "Edit", new { id = Model.ID }) |
         @Html.ActionLink("Retour à la liste", "Index")
     </p>
 

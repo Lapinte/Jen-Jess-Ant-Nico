@@ -10,11 +10,11 @@
     <meta name="viewport" content="width=device-width" />
     <title>BackOffice</title>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/roomy.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info">
             <a class="navbar-brand" href=""></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,10 +23,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="~/">Accueil <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="@Url.Action("Index", "Dashboard")">Accueil <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Trips")">Voyages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Agencies")">Agences</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Reservations")">Réservation</a>
@@ -34,21 +37,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Customers")">Clients</a>
                     </li>
-
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Index", "Commercials")">Commercials</a>
+                        <a class="nav-link" href="@Url.Action("Index", "Commercials")">Commerciaux</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index", "Destinations")">Destinations</a>
                     </li>
                 </ul>
-                @if(commercial != null)
+                @if (commercial != null)
                 {
-                <span class="navbar-text">
-                    Bonjour @commercial.Firstname @commercial.Lastname <a href="@Url.Action("Logout", "AuthenticationCommercial")" class="btn btn-warning"><i class="fa fa-eject"></i></a>
-                </span>
+                    <span class="navbar-text">
+                        Bonjour @commercial.Firstname @commercial.Lastname <a href="@Url.Action("Logout", "AuthenticationCommercial")" class="btn btn-warning"><i class="fa fa-eject"></i></a>
+                    </span>
                 }
-                
+
 
             </div>
         </nav>

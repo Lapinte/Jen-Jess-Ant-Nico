@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BoVoyageJJAN.Models.Agency">
+    <Position X="13.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Agency.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BoVoyageJJAN.Models.Trip">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAAQIQAAAAAAAAAAAAAAAAAAIEAAAASAAAAAA=</HashCode>
+      <FileName>Models\Trip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BoVoyageJJAN.Models.Destination">
+    <Position X="13.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAgAAAAAAAAAAAAAAIAAAABAAAAAAAAAIA=</HashCode>
+      <FileName>Models\Destination.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BoVoyageJJAN.Models.Reservation">
+    <Position X="8" Y="1.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>gAEAEAAEEEAAAAAAgCIAAAAAEAAAQAAAACAAAAAAAAA=</HashCode>
+      <FileName>Models\Reservation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BoVoyageJJAN.Models.Customer">
+    <Position X="5.5" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAACAQAAAQAAAAA=</HashCode>
+      <FileName>Models\Customer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BoVoyageJJAN.Models.Participant">
+    <Position X="5.5" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAEAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Participant.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BoVoyageJJAN.Models.Person">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAIAAAAAAAAABAAAAACAAAAIAAAAAE=</HashCode>
+      <FileName>Models\Person.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BoVoyageJJAN.Models.Civility" Collapsed="true">
+    <Position X="1.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Civility.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

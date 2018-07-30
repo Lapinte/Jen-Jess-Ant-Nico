@@ -15,10 +15,10 @@
     <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
 </head>
 <body>
-
+    
     <div class="container">
-        <img class="img-responsive" src="~/Img/Mont_Fuji1.jpg" height="300" width="1111" />
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <img class="img-responsive" src="~/Img/Mont_Fuji1.jpg" height="300" width="1111"/>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-">
             <a class="navbar-brand" href=""></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -32,24 +32,22 @@
                     <li class="nav-item">
                         <a class="nav-link" href="@Url.Action("Index","Travels")" style="color:deepskyblue"> <i class="fa fa-globe text-white"></i> Voyages</a>
                     </li>
-                
+
                     <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Create","Bookings")" style="color:deepskyblue"><i class="fa fa-check-square text-white"></i> Réserver</a>
+                        <a class="nav-link" href="@Url.Action("Index","Travels")" style="color:deepskyblue"><i class="fa fa-check-square text-white"></i> Réserver</a>
 
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("Search", "Travels")" style="color:deepskyblue"><i class="fa fa-search text-white"></i> Rechercher</a>
-                    </li>
-                
+
+
                 </ul>
-                <a class="nav-link" href="@Url.Action("Create", "Accounts")" style="color:deepskyblue"><i class="fa fa-pencil text-white"></i> Inscription</a>
-                <a class="nav-link" href="@Url.Action("Login","AuthenticationUser")" style="color:deepskyblue"><i class="fa fa-user text-white"></i><strong> Mon compte</strong></a>
-               
+                <a class="nav-link" href="@Url.Action("Create", "Accounts")" style="color:deepskyblue"><i class="fa fa-pencil text-white"></i>Inscription</a>
+                <a class="nav-link" href="@Url.Action("Login","AuthenticationUser")" style="color:deepskyblue"><i class="fa fa-user text-white"></i><strong>Mon compte</strong></a>
+
 
                 @if (user != null)
                 {
                     <span class="navbar-text">
-                        Bonjour @user.Firstname<a href="@Url.Action("Logout", "AuthenticationUser")" class="btn btn-warning btn-sm"><i class="fa fa-eject"></i></a>
+                        Bonjour @user.Firstname &nbsp;&nbsp;&nbsp;&nbsp;<a href="@Url.Action("Logout", "AuthenticationUser")" class="btn btn-warning btn-sm"><i class="fa fa-eject"></i></a>
                     </span>
                 }
 

@@ -216,6 +216,8 @@
     <Content Include="Areas\BackOffice\Views\UserDemandsBo\Details.cshtml" />
     <Content Include="Areas\BackOffice\Views\UserDemandsBo\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\UserDemandsBo\Index.cshtml" />
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="ClassDiagram2.cd" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -415,6 +417,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807301810496_ModifReservationModel.cs" />
+    <Compile Include="Migrations\201807301810496_ModifReservationModel.Designer.cs">
+      <DependentUpon>201807301810496_ModifReservationModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\TopFiveViewModel.cs" />
     <Compile Include="Models\Trip.cs" />
@@ -504,6 +510,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201807301810496_ModifReservationModel.resx">
+      <DependentUpon>201807301810496_ModifReservationModel.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

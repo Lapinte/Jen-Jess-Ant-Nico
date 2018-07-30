@@ -24,11 +24,11 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
 
             IEnumerable<Customer> liste = db.Customers.Include(c => c.Civility);
             if (!string.IsNullOrWhiteSpace(model.Lastname))
-                liste = db.Customers.Where(x => x.Lastname.Contains(model.Lastname));
+                liste = liste.Where(x => x.Lastname.ToLower().Contains(model.Lastname));
             if (!string.IsNullOrWhiteSpace(model.Firstname))
-                liste = db.Customers.Where(x => x.Firstname.Contains(model.Firstname));
+                liste = liste.Where(x => x.Firstname.ToLower().Contains(model.Firstname));
             if (!string.IsNullOrWhiteSpace(model.Mail))
-                liste = db.Customers.Where(x => x.Mail.Contains(model.Mail));
+                liste = liste.Where(x => x.Mail.ToLower().Contains(model.Mail));
             if (model.BirthDateMin != null)
                 liste = liste.Where(x => x.BirthDate >= model.BirthDateMin);
             if (model.BirthDateMax != null)
@@ -104,9 +104,18 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Mail,Password,Lastname,Firstname,Address,Phone,BirthDate,CivilityID")] Customer customer)
         {
+            ModelState.Remove("Mail");
+            ModelState.Remove("Password");
+            ModelState.Remove("ConfirmedPassword");
+            var old = db.Customers.Find(customer.ID);
+            customer.Mail = old.Mail;
+            customer.Password = old.Password;
+            customer.ConfirmedPassword = old.Password.HashMD5();
+            db.Entry(old).State = EntityState.Detached;
             if (ModelState.IsValid)
             {
                 db.Entry(customer).State = EntityState.Modified;
+                db.Configuration.ValidateOnSaveEnabled = false;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
