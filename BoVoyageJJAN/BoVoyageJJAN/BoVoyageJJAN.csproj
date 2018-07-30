@@ -56,9 +56,6 @@
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
-      <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
@@ -117,14 +114,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\all.min.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\brands.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fontawesome.min.css" />
+    <Content Include="Content\regular.min.css" />
+    <Content Include="Content\solid.min.css" />
+    <Content Include="Content\StyleSheet1.css" />
+    <Content Include="Content\svg-with-js.min.css" />
+    <Content Include="Content\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\webfonts\fa-solid-900.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Img\1450261_554250691324294_100369000_n.jpg" />
+    <Content Include="Img\543451_519275181488512_982308053_n.jpg" />
+    <Content Include="Img\6435_539813142768049_1180416354_n.jpg" />
+    <Content Include="Img\8744_557361434346553_2128276839_n.jpg" />
+    <Content Include="Img\BoVoyage1.jpg" />
+    <Content Include="Img\Mont_Fuji1.jpg" />
+    <Content Include="Img\Suisse.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -164,6 +180,36 @@
     <Content Include="Areas\BackOffice\Views\Customers\Edit.cshtml" />
     <Content Include="Areas\BackOffice\Views\Customers\Index.cshtml" />
     <Content Include="Views\Shared\_AddParticipant.cshtml" />
+    <Content Include="Content\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\fontawesome\_variables.scss" />
+    <Content Include="Content\fontawesome\_stacked.scss" />
+    <Content Include="Content\fontawesome\_shims.scss" />
+    <Content Include="Content\fontawesome\_screen-reader.scss" />
+    <Content Include="Content\fontawesome\_rotated-flipped.scss" />
+    <Content Include="Content\fontawesome\_mixins.scss" />
+    <Content Include="Content\fontawesome\_list.scss" />
+    <Content Include="Content\fontawesome\_larger.scss" />
+    <Content Include="Content\fontawesome\_icons.scss" />
+    <Content Include="Content\fontawesome\_fixed-width.scss" />
+    <Content Include="Content\fontawesome\_core.scss" />
+    <Content Include="Content\fontawesome\_bordered-pulled.scss" />
+    <Content Include="Content\fontawesome\_animated.scss" />
+    <Content Include="Content\fontawesome\v4-shims.scss" />
+    <Content Include="Content\fontawesome\solid.scss" />
+    <Content Include="Content\fontawesome\regular.scss" />
+    <Content Include="Content\fontawesome\fontawesome.scss" />
+    <Content Include="Content\fontawesome\brands.scss" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -335,7 +381,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="Areas\BackOffice\BackOfficeAreaRegistration.cs" />
     <Compile Include="Areas\BackOffice\Controllers\AgenciesController.cs" />
     <Compile Include="Areas\BackOffice\Controllers\BaseBoController.cs" />
@@ -363,17 +408,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807261915599_BaseLocal.cs" />
-    <Compile Include="Migrations\201807261915599_BaseLocal.Designer.cs">
-      <DependentUpon>201807261915599_BaseLocal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807262051026_ModifCustomerParticipant.cs" />
-    <Compile Include="Migrations\201807262051026_ModifCustomerParticipant.Designer.cs">
-      <DependentUpon>201807262051026_ModifCustomerParticipant.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807271615020_UserDemand.cs" />
-    <Compile Include="Migrations\201807271615020_UserDemand.Designer.cs">
-      <DependentUpon>201807271615020_UserDemand.cs</DependentUpon>
+    <Compile Include="Migrations\201807281635254_Init.cs" />
+    <Compile Include="Migrations\201807281635254_Init.Designer.cs">
+      <DependentUpon>201807281635254_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\TopFiveViewModel.cs" />
@@ -466,14 +503,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807261915599_BaseLocal.resx">
-      <DependentUpon>201807261915599_BaseLocal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807262051026_ModifCustomerParticipant.resx">
-      <DependentUpon>201807262051026_ModifCustomerParticipant.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807271615020_UserDemand.resx">
-      <DependentUpon>201807271615020_UserDemand.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807281635254_Init.resx">
+      <DependentUpon>201807281635254_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
