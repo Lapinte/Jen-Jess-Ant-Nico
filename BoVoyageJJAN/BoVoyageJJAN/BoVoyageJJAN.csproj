@@ -415,25 +415,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807281405524_Test.cs" />
-    <Compile Include="Migrations\201807281405524_Test.Designer.cs">
-      <DependentUpon>201807281405524_Test.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807282053123_TotalPrice.cs" />
-    <Compile Include="Migrations\201807282053123_TotalPrice.Designer.cs">
-      <DependentUpon>201807282053123_TotalPrice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807282121313_TotalPriceDatabaseGenerated.cs" />
-    <Compile Include="Migrations\201807282121313_TotalPriceDatabaseGenerated.Designer.cs">
-      <DependentUpon>201807282121313_TotalPriceDatabaseGenerated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807290745201_Abort.cs" />
-    <Compile Include="Migrations\201807290745201_Abort.Designer.cs">
-      <DependentUpon>201807290745201_Abort.cs</DependentUpon>
-    <Compile Include="Migrations\201807281635254_Init.cs" />
-    <Compile Include="Migrations\201807281635254_Init.Designer.cs">
-      <DependentUpon>201807281635254_Init.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\TopFiveViewModel.cs" />
     <Compile Include="Models\Trip.cs" />
@@ -523,22 +504,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807281405524_Test.resx">
-      <DependentUpon>201807281405524_Test.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807282053123_TotalPrice.resx">
-      <DependentUpon>201807282053123_TotalPrice.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807282121313_TotalPriceDatabaseGenerated.resx">
-      <DependentUpon>201807282121313_TotalPriceDatabaseGenerated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807290745201_Abort.resx">
-      <DependentUpon>201807290745201_Abort.cs</DependentUpon>
-    <EmbeddedResource Include="Migrations\201807281635254_Init.resx">
-      <DependentUpon>201807281635254_Init.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
