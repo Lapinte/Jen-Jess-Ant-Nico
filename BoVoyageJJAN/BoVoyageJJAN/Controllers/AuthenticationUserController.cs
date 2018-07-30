@@ -38,7 +38,7 @@ namespace BoVoyageJJAN.Areas.BackOffice.Controllers
                 }
                 else
                 {
-                    Session.Add("USER_BO", customer);
+                    Session.Add("USER", customer);
                     return RedirectToAction("Index", "Home", new { area = "" });
                 }
             }

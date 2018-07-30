@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 
 namespace BoVoyageJJAN.Models
 {
@@ -16,6 +17,7 @@ namespace BoVoyageJJAN.Models
         public string CreditCardNumber { get; set; }
 
 
+        //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Required(ErrorMessage = "Le champ {0} est requis")]
         [Display(Name = "Prix Total")]
         public decimal TotalPrice { get; set; }
