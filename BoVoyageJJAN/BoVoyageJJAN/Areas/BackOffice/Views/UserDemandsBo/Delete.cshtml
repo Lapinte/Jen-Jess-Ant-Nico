@@ -1,0 +1,62 @@
+﻿@model BoVoyageJJAN.Models.UserDemand
+
+@{
+    Layout = "~/Areas/BackOffice/Views/Shared/_LayoutBO.cshtml";
+
+    ViewBag.Title = "Delete";
+}
+
+
+<h3>Souhaitez-vous vraiment supprimer cette demande de contact ?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayName("Numéro de la demande")
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Demand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Demand)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Supprimer" class="btn btn-default" /> |
+            @Html.ActionLink("Retour à la liste des demandes de contact", "Index")
+        </div>
+    }
+</div>

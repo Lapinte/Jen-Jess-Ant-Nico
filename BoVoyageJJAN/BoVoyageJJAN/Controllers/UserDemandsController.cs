@@ -16,7 +16,7 @@ namespace BoVoyageJJAN.Controllers
         // GET: Home/Contact
         public ActionResult Contact()
         {
-            return View();
+            return View("Contact");
         }
 
         // POST: Home/Contact
@@ -31,7 +31,7 @@ namespace BoVoyageJJAN.Controllers
                 db.UserDemands.Add(userDemand);
                 db.SaveChanges();
                 DisplayMessage("Votre demande a bien été envoyée " + userDemand.Firstname + ". Elle sera traitée dans les meilleurs délais.", MessageType.SUCCESS);
-                return RedirectToAction("Index, Home");
+                return RedirectToAction("Contact");
             }
 
             return View();
