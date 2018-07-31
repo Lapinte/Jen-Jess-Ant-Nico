@@ -21,7 +21,7 @@ namespace BoVoyageJJAN.Tests
         public void TestDetailsView()
         {
             var controller = new UserDemandsBoController();
-            var result = controller.Details(2002) as ViewResult;
+            var result = controller.Details(3) as ViewResult;
             Assert.AreEqual("Details", result.ViewName);
         }
 
@@ -29,16 +29,16 @@ namespace BoVoyageJJAN.Tests
         public void TestDetailsViewData()
         {
             var controller = new UserDemandsBoController();
-            var result = controller.Details(2002) as ViewResult;
+            var result = controller.Details(3) as ViewResult;
             var userDemand = (UserDemand)result.ViewData.Model;
-            Assert.AreEqual(2002, userDemand.ID);
+            Assert.AreEqual(3, userDemand.ID);
         }
 
         [TestMethod]
         public void TestDeleteView()
         {
             var controller = new UserDemandsBoController();
-            var result = controller.Delete(2002) as ViewResult;
+            var result = controller.Delete(3) as ViewResult;
             Assert.AreEqual("Delete", result.ViewName);
         }
 
@@ -46,9 +46,9 @@ namespace BoVoyageJJAN.Tests
         public void TestDeleteViewData()
         {
             var controller = new UserDemandsBoController();
-            var result = controller.Delete(2002) as ViewResult;
+            var result = controller.Delete(3) as ViewResult;
             var userDemand = (UserDemand)result.ViewData.Model;
-            Assert.AreEqual(2002, userDemand.ID);
+            Assert.AreEqual(3, userDemand.ID);
         }
     }
 }
